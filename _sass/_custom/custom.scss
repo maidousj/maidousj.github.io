@@ -1,0 +1,144 @@
+body{
+	// https://source.unsplash.com/random/1600x900
+    //background:url(http://img.bizhiku.net/allimg/2018/0928/1-1P92Q10R3.jpg);
+    background:url(/assets/images/bridge.jpg);
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position:center;
+}
+
+
+// 自定义页脚跳动的心样式
+@keyframes heartAnimate {
+    0%,100%{transform:scale(1);}
+    10%,30%{transform:scale(0.9);}
+    20%,40%,60%,80%{transform:scale(1.1);}
+    50%,70%{transform:scale(1.1);}
+}
+#heart {
+    animation: heartAnimate 1.33s ease-in-out infinite;
+}
+.with-love {
+    color: rgb(11, 41, 50);
+}
+
+//文章内容背景改成了半透明
+.content-wrap {
+    background: rgba(255, 255, 255, 0.8);
+}
+.sidebar {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 6px #dbdbdb;
+}
+.site-nav{
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.8);
+}
+.sidebar-inner {
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: 0 2px 6px #dbdbdb;
+}
+.header-inner {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 6px #dbdbdb;
+}
+.footer {
+    font-size: 14px;
+    color: #e5e5e5;
+    //color: #434343;
+}
+
+// 文章的描述description
+.posts-expand .post-meta .post-description {
+    font-style: italic;
+    font-size: 14px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    color: #666;
+}
+
+//友链居中
+.links-of-blogroll-title {
+  text-align: center;
+}
+
+//友链文本颜色
+//将链接文本设置为蓝色，鼠标划过时文字颜色加深，并显示下划线
+.post-body p a{
+  text-align: center;
+  color: #434343;
+  border-bottom: none;
+  &:hover {
+    color: #5073b8;
+    text-decoration: underline;
+  }
+}
+
+
+//修改友情链接样式
+.links-of-blogroll-item a{
+  text-align: center;
+  color: #434343;
+  border-bottom: none;
+  &:hover {
+    color: #5073b8;
+    text-decoration: underline;
+  }
+}
+
+// 时间轴样式
+.posts-collapse {
+    margin: 50px 0px;
+}
+@media (max-width: 1023px) {
+    .posts-collapse {
+        margin: 50px 20px;
+    }
+}
+
+// 时间轴左边线条
+.posts-collapse::after {
+    margin-left: -2px;
+    background-image: linear-gradient(180deg,#f79533 0,#f37055 15%,#ef4e7b 30%,#a166ab 44%,#5073b8 58%,#1098ad 72%,#07b39b 86%,#6dba82 100%);
+}
+
+// 时间轴左边线条圆点颜色
+.posts-collapse .collection-title::before {
+    background-color: rgb(255, 255, 255);
+}
+
+// 时间轴文章标题左边圆点颜色
+.posts-collapse .post-header:hover::before {
+    background-color: rgb(161, 102, 171);
+}
+
+// 时间轴年份
+.posts-collapse .collection-title h1, .posts-collapse .collection-title h2 {
+    color: rgb(102, 102, 102);
+}
+
+// 时间轴文章标题
+.posts-collapse .post-title a {
+    color: rgb(80, 115, 184);
+}
+.posts-collapse .post-title a:hover {
+    color: rgb(161, 102, 171);
+}
+
+// 时间轴文章标题底部虚线
+.posts-collapse .post-header:hover {
+    border-bottom-color: rgb(161, 102, 171);
+}
+
+// archives页面顶部文字
+.page-archive .archive-page-counter {
+    color: rgb(0, 0, 0);
+}
+
+// archives页面时间轴左边线条第一个圆点颜色
+.page-archive .posts-collapse .archive-move-on {
+    top: 10px;
+    opacity: 1;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}

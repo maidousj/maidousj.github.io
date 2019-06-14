@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    <entry>
+      <title><![CDATA[WTF is this post talking about?]]></title>
+      <url>/2019/01/24/WTF/</url>
+      <content type="text"><![CDATA[OK. FFFFF**k!这一篇是大佬《Renyi DP》的参考文献5，说是提供了更生动的比喻？为什么看不懂人家生动的比喻。。事实上《RDP》这篇在第二部分介绍DP的时候就不知怎么没头没尾的冒出两种场景。。大佬是这么写的  … We conclude that $(\epsilon,\delta)$-DP is a qualitatively different definition than pure $\epsilon$-DP (unless, of course, $\delta=0$, which we assume not to be the case through the rest of this section).然后下一段是这样的开头  Even for the simple case of exactly two input databases (such as when the adversary knows the entire dataset except whether it contains a particular record), the $\delta$ additive term encompasses two very different modes in which privacy may fail. In both scenarios $\epsilon$-DP holds with probability $1-\delta$, they differ in what happens with the remaining probability $\delta$….这是哪两种场景啊，接着往下就是一种会使privacy degrades gracefully，例子：$\epsilon_1$-DP with probability $\delta/2$, $\epsilon_2$-DP with P $\delta/4$…;另一种是直接以$\delta$的概率泄露某条记录是否为数据库的一部分 – becomes completely exposed.用我们班同学科学家的话来说就是“放什么屁”。但是科学家应该不会在看论文的时候产生这种疑问吧。。这种东西看不懂，看这类论文似乎就像看了一遍文字然后并没有什么实质性的感觉，扣半天字眼又让效率变得颇低。恶性循环恶性循环。。换个坑吧T.T]]></content>
+      <categories>
+        
+          <category> blog </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> DP </tag>
+        
+          <tag> WTF </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[差分隐私的组合性质总结]]></title>
+      <url>/2019/01/23/Composition-theorems-of-Differential-Privacy/</url>
+      <content type="text"><![CDATA[从这来的，记录一下作为总结，之前各种survey看的云里雾里的，总算找到一个清晰的。组合性首先是pure DP的组合性，所谓pure DP就是指$\epsilon$-DP。      定理1 ($\epsilon$-DP的标准组合性)：对于$1\leq i \leq k$，如果$M_i: \chi^n \rightarrow R_i$是$\epsilon_i$-DP的算法，那么组合性被定义为，$M(D) = (M_1(D), M_2(D), \dots, M_k(D))$是$\sum_{i=1}^k \epsilon_i$-DP的。        定理2 ($(\epsilon,\delta)$-DP的标准组合性)：和定理1类似，对于$1\leq i \leq k$，如果$M_i: \chi^n \rightarrow R_i$是$(\epsilon_i, \delta_i)$-DP的算法，那么组合性被定义为，$M(D) = (M_1(D), M_2(D), \dots, M_k(D))$是$(\sum_{i=1}^k \epsilon_i, \sum_{i=1}^k \delta_i)$-DP的。        定理3 (高级组合性)：对于$1\leq i \leq k$并且$k &lt; 1/\epsilon$，$\delta’&gt;0$，如果$M_i: \chi^n \rightarrow R_i$是$(\epsilon, \delta)$-DP的算法，那么组合性被定义为，$M(D) = (M_1(D), M_2(D), \dots, M_k(D))$是$(O(\sqrt{2k\ln(1/\delta’)})\epsilon, k\delta + \delta’)$-DP的。  可以回答多少查询（queries）  A single query          Randomized Response      Laplace Mechanism      Exponential Mechanism        Multiple queries          Standard composition – $\sqrt n$ queries      Advanced composition – $n$ queries      高斯机制大概是当$\sigma = \frac{\sqrt{2\ln(1.25/\delta)}\Delta_2 f}{\epsilon}$时，对函数$f$加入服从高斯分布的噪声 $nosie \sim N(0, \sigma^2)$，可以满足$(\epsilon, \delta)$-DP.$\delta$的作用  当作DP失败的概率；  在高级组合定理中，当组合了n个查询时，对隐私成本$\epsilon$的增长可以得到更好的bound；  用来对高斯机制进行分析。其中，2和3是最初引入$(\epsilon, \delta)$-DP的动机。]]></content>
+      <categories>
+        
+          <category> blog </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> course </tag>
+        
+          <tag> CSE660 </tag>
+        
+          <tag> DP </tag>
+        
+          <tag> composition theorem </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[在没有导师的指导下，研究生如何阅读文献、提出创见、写出论文？(摘自知乎大佬)]]></title>
+      <url>/2019/01/18/ag/</url>
+      <content type="text"><![CDATA[作者：王鸿伟链接：https://www.zhihu.com/question/23647187/answer/568803695  总结：还是自己菜：）导师放羊、实验室散养是非常常见的现象，大家大可不必慌张。综合来说，导师的不坑爹指数排名如下：年轻有为、待你平等的小老板 &gt; 年轻有为、剥削你的小老板 &gt; tenure、偶尔管你的中年老板 &gt; 能力一般的小老板 &gt; 放羊的大老板 » 任何年龄段、没能力还瞎指挥、限制你自由的老板。如果你的老板放羊，那属于比较坑爹型，但还没有到天都塌了的地步。这种情况下，你需要如下的自救：  你首先要意识到，几乎没有完全原创的工作，最起码任何论文都是有参考文献的吧？做科研灌水当然是不好的，但是一开始就好高骛远也同样是不对的。科研的基本功需要扎实地训练，而这种训练需要你从模仿开始做起。一开始的时候idea的新颖程度低一些，工作量夯实一些，是完全可以理解的，因为你需要这样的几次完整的科研周期的训练，才能成为一名合格的研究生。  首先选择一个你感兴趣/有前途/有钱途/有人能带你的大方向。优先阅读该方向里最近五年的survey（太老的可以不看）。鉴于计算机领域的发展速度太快，只阅读survey是远远不够的。你需要自行整理该方向相关的近三年的顶级会议（一般也就三四个），以关键词搜索出所有的论文，然后尽可能阅读一些你能懂的/和你想做的相关的/热门的论文，增加对该领域发展现状和顶级会议论文应该有的样子的初步了解。  你最好能找到可以和你一起学习的同学/可以和你讨论的其他老板。idea的诞生是需要相互启发和相互质疑的。在完全没有任何科研经验的时候，最好要找到高年级的学长学姐或者其他小老板讨论，他们可以帮你确定一个小方向。这一点我深有体会，一个完全没有经验的新手是最需要有人可以带着入门的，事实上，这也是老板不放羊的最大的好处。你需要做的，就是在前辈的带领下，快速地从一个小方向切入进去，然后慢慢地自己开始发现新天地。  最开始的时候阅读论文，最好能细致一点，把论文之间的引用关系理清楚，把近几年的发展脉络理清楚。我当年开始第一个工作的时候，就是把我论文需要引用的二十多篇论文的主要思想、方法都写了下来，把引用关系画成了一个DAG图。当你入门之后，你需要有快速阅读一篇文章并掌握其核心贡献点的能力，而不要再花费很多时间来标注。  如果你不会设计实验/写论文，请模仿和你的工作最相关的论文。把他们的论文好好读几遍，从结构到段落到句子都可以模仿。我当年的第一篇论文，我的老板就说我写的不错，其实我也是吃透并模仿了好几篇参考文献而已。  写论文的时候切记：逻辑第一！这种逻辑是贯穿全文的，段落层面的逻辑、句子层面的逻辑、甚至一句话里的逻辑，都是非常关键的。一篇好的论文要循循善诱，有理有据，让人读起来不要废太多脑子，就觉得你说的很有道理。这里面要着重注意各种句子层面的关系：转折、因果、递进等。一句话可以有无数种表达方式，你要做的就是在脑子里把各种方式过滤一遍，选择最流畅的那一种。在研究生学术生涯中，导师不是最关键的，最关键的是你的目标、决心和努力。一名合格的研究生，应该是全栈研究生，也就是阅读参考文献，想idea，修正idea，设计实验，跑实验，写论文，修改论文，做presentation，这一整条技术栈你都要可以独立进行。如果你缺失了任何一个环节，你都会受制于你的导师。这个问题下的回答已经非常多了，大道理你也都看过，也都明白，问题是，你是否真的做到了背水一战的决心和努力？]]></content>
+      <categories>
+        
+          <category> blog </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> read paper </tag>
+        
+          <tag> write paper </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[Random response in Rappor]]></title>
+      <url>/2017/07/16/ag/</url>
+      <content type="text"><![CDATA[Rappor Introduction中$2(Y-0.25)$的推导原文[1]中  For this question, the survey respondent is asked to flip a fair coin, in secret, and answer “Yes” if it coms up heads, but tell the truth otherwise.后边说这种情况下回答者可以对“Yes”进行deny，但是无法对“No”进行deny，于是  as a refinement, respondents can also choose the untruthful answer by flipping another coin in secret, and get strong deniability for both “Yes” and “No” answers.由此我们推测这种回答过程是第一次抛硬币时正面回答“Yes”，反面的话第二次抛硬币；第二次硬币反面的话回答“No”，正面的话“tell the truth”。采用像[2]中的表达式子，用$Z=1$表示回答真的是“Yes”；用$Y=1$表示回答是经过RR后的“Yes”（也就是观察到的结果），$Y=0$表示回答是经过RR后的“No”。于是我们有：于是所以但是这与文中的不符。所以大胆揣测文中的意思是，如果两次都是正面回答”Yes”；两次都是反面回答“No”；一正一反如实回答。这样的话此时可以推出$P(Z=1)=2(P(Y=1)-0.25)$PS: 可能推导有问题。。但是没想出更好的解释。其实没必要纠结这个小细节，知道RR的思想，然后能求出准确的结果就好。RR的方式是多种多样的。。PPS: 7.17日补充，和贵哥讨论，第一次正面时回答真相，反面则再抛一次；第二次正面则回答Yes，反面回答No，也可推出上述结论。再次证明这个不是重要问题。参考文献[1] RAPPOR: Randomized Aggregatable Privacy-Preserving Ordinal Response[2] Design and Analysis of the Randomized Response Technique]]></content>
+      <categories>
+        
+          <category> blog </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> random response </tag>
+        
+          <tag> Rappor </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[R语言安装]]></title>
+      <url>/2017/07/01/R-Installation/</url>
+      <content type="text"><![CDATA[Summary略微低端，只是记录 ubuntu14.04环境下的R语言一种自由软件编程语言与操作环境，主要用于统计分析、绘图、数据挖掘。R本来是由来自新西兰奥克兰大学的罗斯·伊哈卡和罗伯特·杰特曼开发（也因此称为R），现在由“R开发核心团队”负责开发。R基于S语言的一个GNU计划项目，所以也可以当作S语言的一种实现，通常用S语言编写的代码都可以不作修改的在R环境下运行。R的语法是来自Scheme。Install在”/etc/apt/source.list”中添加deb https://cloud.r-project.org/bin/linux/ubuntu trusty执行$ sudo apt-get update遇到错误W: GPG error: https://cloud.r-project.org trusty/ Release: The following signatures could not be verified because the public key is not available: NO_PUBKEY 51716619E084DAB9执行命令$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 51716619E084DAB9安装完备的 R 系统：$ sudo apt-get install r-base]]></content>
+      <categories>
+        
+          <category> blog </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> R </tag>
+        
+          <tag> Software install </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[FTRL online learning algorithm]]></title>
+      <url>/2017/06/28/FTRL-on-line-learning-algorithm/</url>
+      <content type="text"><![CDATA[Summary两种在线学习算法，一种是Online Bayesian Learning，另一种是FTRL(Follow The Regularized Leader)。提到FTRL就要先了解FTL，FTL的思想是每次找到让之前所有损失函数之和最小的参数。FTL流程：  初始化$w$  for $t=1,\dots, n$      损失函数$f_t$    更新      而FTRL算法就是在FTL的优化目标的基础上，加入了正则化项，防止过拟合：FTRL算法的损失函数，一般也不是能够很快求解的，这种情况下，一般需要找一个代理的损失函数。代理损失函数需要满足几个要求：  代理损失函数比较容易求解，最好是有解析解  优化代理损失函数求的解，和优化原函数得到的解差距不能太大为了衡量条件2中的两个解的差距，这里需要引入regret的概念。假设每一步用的代理函数是$h_t(w)$其中$w^* = \mathop{argmin}\limits_{w} \sum_{i=1}^t f_i(w)  $是原函数的最优解。所以regret的含义就是每次代理函数求出解，和真正损失函数求出解的损失差距。这个损失必须满足一定条件，Online Learning才可以有效：随着训练样本的增多，这两个优化目标优化出的参数的实际损失值差距越来越小。如果$f_t(w)$是凸函数，我们可以用如下的代理损失函数：其中$g_i$是$f_i(w_i)$的次梯度（如果$f_i(w_i)$是可导的，次梯度就是梯度）。$\eta_t$满足：只要$f_i(w_i)$是凸函数，上面的代理函数一定满足条件(1)。上面的式子我们可以得出$w$的解析解：其中— —whywhy可以得到FTRL的更新流程如下：  输入$\alpha, \lambda_1$  初始化 $w_{1…N}, z_{1…N} = 0, n_{1…N} = 0$  for $t = 1 … T$      损失函数 $f_t$ for $i = 1 …N$          计算                        更新            最后一个公式哪儿去了。PS: 上述内容整理自美团技术团队的Online Learning算法理论与实践老！子！看！的！很！晕！]]></content>
+      <categories>
+        
+          <category> blog </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> FTL </tag>
+        
+          <tag> FTRL </tag>
+        
+          <tag> Online Learning </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[MacOS下安装ipdb的问题]]></title>
+      <url>/2017/06/26/MacOS-install-ipdb-problem/</url>
+      <content type="text"><![CDATA[以下方法没有测试：  由于El Capitan引入了SIP机制(System Integrity Protection)，默认下系统启用SIP系统完整性保护机制，无论是对于硬盘还是运行时的进程限制对系统目录的写操作。 这也是我们安装ipdb/ipython失败的原因….现在的解决办法是取消SIP机制，具体做法是：重启电脑，按住Command+R(直到出现苹果标志)进入Recovery Mode(恢复模式)左上角菜单里找到实用工具 -&gt; 终端输入csrutil disable回车重启Mac即可如果想重新启动SIP机制重复上述步骤改用csrutil enable即可我们现在再看看sip的状态, 这样再安装ipdb/ipython、gevent再也不会提示无法写入的权限提示了$ csrutil statusSystem Integrity Protection status: disabled.如果在mac下碰到OSError: [Errno 1] Operation not permitted:的问题，就算用sudo 也无法解决，那肯定是sip在作怪了.本人测试了另一种更为优雅的方法，基于普通用户的权限来安装。此外，本人还遇到了提示版本的问题。error in ipdb setup command: Invalid environment marker: python_version &gt;= "3.3"$ pip install ipdb==0.10.2 --user -U]]></content>
+      <categories>
+        
+          <category> blog </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> pip </tag>
+        
+          <tag> ipdb </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[The first test blog]]></title>
+      <url>/2017/06/26/test/</url>
+      <content type="text"><![CDATA[Summary:Copy from one of my memos for test.catalog  Module 2  Module 3  Module 4Module2$a^2_1$  在VLDB2016上的一个教程为了保证数据的可用性，一个统计数据库必须要泄漏一些关于个体的信息  A vast majority of records in a database of size n can be reconstructed when $n\log(n)^2$ queriesare answered by a statistical database …… even if each answer has been arbitrarilyaltered to have up to o(√n) error——— Dinur-Nissim PODS 2003也就是说，对于（在同一个数据库上的）queries的数量是有限制的。Module 3对于表格式的数据库查询的回复Offline (batch)  Entire W given as input, answers computed in batchOnline (adaptive)  W is sequence q1, q2, … that arrives online  Adaptive: analyst’s choice for qi can depend onanswers 𝑎1, … , 𝑎𝑖−1Answering linear queries online is strictly harder than answering them offline [BSU16]数据复杂性和查询的复杂性Query：  histograms, range queries, marginals, counting queries, linear queriesSolution variants: query answers vs.synthetic dataTwo high-level approaches to solving problem  Direct:– Output of the algorithm is list of query answers  Synthetic data:– Algorithm constructs a synthetic dataset D’, which canbe queried directly by analyst– Analyst can pose additional queries on D’(though answers may not be accurate)]]></content>
+      <categories>
+        
+          <category> blog </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> test </tag>
+        
+          <tag> haha </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[Markdown Extra Components]]></title>
+      <url>/2016/02/24/markdown-extra-components/</url>
+      <content type="text"><![CDATA[Summary:You can pick as item to see how to apply in markdown.Especial Elements  Evidence  Side-by-Side  Star  Especial Breaker  SpoilerExternal Elements  Gist  Codepen  Slideshare  VideosEvidenceYou can try the evidence!Paragraphs can be written like so. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.&lt;span class="evidence"&gt;Paragraphs can be written like so. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.&lt;/span&gt;Side-by-sideLike the Medium component.Image on the left and Text on the right:&lt;div class="side-by-side"&gt;    &lt;div class="toleft"&gt;        &lt;img class="image" src="http://localhost:4000/" alt="Alt Text"&gt;        &lt;figcaption class="caption"&gt;Test photo by Sun&lt;/figcaption&gt;    &lt;/div&gt;        &lt;div class="toright"&gt;        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;    &lt;/div&gt;&lt;/div&gt;                    Test photo by Sun                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Text on the left and Image on the right:&lt;div class="side-by-side"&gt;    &lt;div class="toleft"&gt;        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;    &lt;/div&gt;        &lt;div class="toright"&gt;        &lt;img class="image" src="http://localhost:4000/" alt="Alt Text"&gt;        &lt;figcaption class="caption"&gt;Test photo by Sun&lt;/figcaption&gt;    &lt;/div&gt;&lt;/div&gt;            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.                            Test photo by Sun    StarYou can give evidence to a post. Just add the tag to the markdown file.star: trueEspecial BreakerYou can add a especial hr to your text.&lt;div class="breaker"&gt;&lt;/div&gt;SpoilerYou can add an especial hidden content that appears on hover.&lt;div class="spoiler"&gt;&lt;p&gt;your content&lt;/p&gt;&lt;/div&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.GistYou can add Gists from github.{ % gist sergiokopplin/91ff4220480727b47224245ee2e9c291 % }CodepenYou can add Pens from Codepen.&lt;p data-height="268" data-theme-id="0" data-slug-hash="gfdDu" data-default-tab="result" data-user="chriscoyier" class='codepen'&gt;    See the Pen &lt;a href='http://codepen.io/chriscoyier/pen/gfdDu/'&gt;Crappy Recreation of the Book Cover of *The Flame Alphabet*&lt;/a&gt; by Chris Coyier (&lt;a href='http://codepen.io/chriscoyier'&gt;@chriscoyier&lt;/a&gt;) on &lt;a href='http://codepen.io'&gt;CodePen&lt;/a&gt;.&lt;/p&gt;&lt;script async src="//assets.codepen.io/assets/embed/ei.js"&gt;&lt;/script&gt;See the Pen Crappy Recreation of the Book Cover of *The Flame Alphabet* by Chris Coyier (@chriscoyier) on CodePen.SlideshareAdd your presentations here!&lt;iframe src="//www.slideshare.net/slideshow/embed_code/key/hqDhSJoWkrHe7l" width="560" height="310" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen&gt; &lt;/iframe&gt; VideosDo you want some videos? Youtube, Vimeo or Vevo? Copy the embed code and paste on your post!Example&lt;iframe width="560" height="310" src="https://www.youtube.com/embed/r7XhWUDj-Ts" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;]]></content>
+      <categories>
+        
+          <category> blog </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> markdown </tag>
+        
+          <tag> components </tag>
+        
+          <tag> extra </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[Markdown Common Elements]]></title>
+      <url>/2016/02/24/markdown-common-elements/</url>
+      <content type="text"><![CDATA[Summary:You can pick as item to see how to apply in markdown.Comum Elements  Basic formatting  Headings  Lists  Paragraph Modifiers  Urls  Horizontal Rule  Images  CodeBasic formattingThis note demonstrates some of what Markdown is capable of doing.And that’s how to do it.This note **demonstrates** some of what [Markdown][some/link] is *capable of doing*.HeadingsThere are six levels of headings. They correspond with the six levels of HTML headings. You’ve probably noticed them already in the page. Each level down uses one more hash character. But we are using just 4 of them.Headings can be smallHeadings can be smallHeadings can be smallHeadings can be small# Heading## Heading### Heading#### HeadingListsOrdered list  Item 1  A second item  Number 31. Item 12. A second item3. Number 3Unordered list  An item  Another item  Yet another item  And there’s more…* An item* Another item* Yet another item* And there's more...Paragraph modifiersQuote  Here is a quote. What this is should be self explanatory. Quotes are automatically indented when they are used.&gt; Here is a quote. What this is should be self explanatory.URLsURLs can be made in a handful of ways:  A named link to Mark It Down.  Another named link to Mark It Down  Sometimes you just want a URL like http://markitdown.net/.* A named link to [MarkItDown][3].* Another named link to [MarkItDown](http://markitdown.net/)* Sometimes you just want a URL like &lt;http://markitdown.net/&gt;.Horizontal ruleA horizontal rule is a line that goes across the middle of the page.It’s sometimes handy for breaking things up.---ImagesMarkdown can also contain images. I’ll need to add something here sometime.![Markdowm Image][/image/url]Figure Caption?![Markdowm Image][/image/url]&lt;figcaption class="caption"&gt;Photo by John Doe&lt;/figcaption&gt;Photo by John DoeBigger Images?![Markdowm Image][/image/url]{: class="bigger-image" }CodeA HTML Example:&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt;    &lt;meta charset="UTF-8"&gt;    &lt;title&gt;Document&lt;/title&gt;&lt;/head&gt;&lt;body&gt;    &lt;h1&gt;Just a test&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;A CSS Example:pre {    padding: 10px;    font-size: .8em;    white-space: pre;}pre, table {    width: 100%;}code, pre, tt {    font-family: Monaco, Consolas, Inconsolata, monospace, sans-serif;    background: rgba(0,0,0,.05);}A JS Example:// Sticky Header$(window).scroll(function() {    if ($(window).scrollTop() &gt; 900 &amp;&amp; !$("body").hasClass('show-menu')) {        $('#hamburguer__open').fadeOut('fast');    } else if (!$("body").hasClass('show-menu')) {        $('#hamburguer__open').fadeIn('fast');    }});]]></content>
+      <categories>
+        
+          <category> blog </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> markdown </tag>
+        
+          <tag> elements </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+    <entry>
+      <title><![CDATA[:ramen: Indigo, minimalist jekyll theme]]></title>
+      <url>/2016/01/23/indigo-jekyll-theme/</url>
+      <content type="text"><![CDATA[Example of project - Indigo Minimalist Jekyll Template - Demo. This is a simple and minimalist template for Jekyll for those who likes to eat noodles.What has inside?  Gulp  BrowserSync  Stylus  SVG  Travis  No JS  98/100Check it out here.If you need some help, just tell me.]]></content>
+      <categories>
+        
+          <category> project </category>
+        
+      </categories>
+      <tags>
+        
+          <tag> jekyll </tag>
+        
+      </tags>
+      <tags></tags>
+    </entry>
+  
+</search>
