@@ -1,5 +1,5 @@
 ---
-title: \<Differentially Private Contextual Linear Bandits\> 阅读
+title: Differentially Private Contextual Linear Bandits 阅读
 layout: post
 date: 2019-05-24
 category: blog
