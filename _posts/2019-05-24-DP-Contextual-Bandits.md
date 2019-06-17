@@ -29,5 +29,5 @@ Shariff R, Sheffet O. Differentially Private Contextual Linear Bandits[C]//Advan
 给出了基于JDP的Contextual MAB问题的上下界。直接用DP会忽略context，并且带来线性的regret，所以本文采用了更relaxed的JDP，
 > adopt the more relaxed notion of joint differential privacy [23] which, intuitively, allows us to present the t-th user with products corresponding to her preferences, while guaranteeing that all interactions with all users at times t′ > t have very limited dependence on user t’s preferences.
 
-![DP-Contextual-Bandit.png](../assets/images/snapshot4paper/DP-Contextual-Bandit.png)
+![DP-Contextual-Bandit.png](/assets/images/snapshot4paper/DP-Contextual-Bandit.png)
 
