@@ -50,7 +50,9 @@ Mohassel P, Zhang Y. Secureml: A system for scalable privacy-preserving machine 
   
 #### Reference
 [1] Asharov G, Lindell Y, Schneider T, et al. More efficient oblivious transfer and extensions for faster secure computation[C]//Proceedings of the 2013 ACM SIGSAC conference on Computer & communications security. ACM, 2013: 535-548.
+
 [2] Yao A C C. Protocols for secure computations[C]//FOCS. 1982, 82: 160-164.
+
 [3] Demmler D, Schneider T, Zohner M. ABY-A Framework for Efficient Mixed-Protocol Secure Two-Party Computation[C]//NDSS. 2015.
 
 ##### 结论
