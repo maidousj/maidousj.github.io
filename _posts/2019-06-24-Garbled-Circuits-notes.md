@@ -29,7 +29,7 @@ Yao大佬在1986年提出的。可以叫多方安全计算的基石。
 
 a接下来打乱上表的顺序，然后讲GT和自己输入对应的key发送给b，比如，a的输入是0，那就发$k_a^0$ ，输入是1就发$k_a^1$。同时要将$k_b^0, k_b^1$也发送给b。
 
-但是这样就会产生一个问题，b有了上述key以后就可以解密出至少两个输出，这样会有问题。所以需要用到[Oblivious Transfer notes][https://maidousj.github.io/2019/06/18/Oblivious-Transfer-notes/]中提到的OT协议，让a把两个key加密后$E(k_b^0), E(k_b^1)$发送给b，b通过这个协议只能解密出一个有效的key，从而使a不知道自己使用的是哪个key。
+但是这样就会产生一个问题，b有了上述key以后就可以解密出至少两个输出，这样会有问题。所以需要用到[Oblivious Transfer notes](https://maidousj.github.io/2019/06/18/Oblivious-Transfer-notes/)中提到的OT协议，让a把两个key加密后$E(k_b^0), E(k_b^1)$发送给b，b通过这个协议只能解密出一个有效的key，从而使a不知道自己使用的是哪个key。
 
 接下来b将解密得到的$k_c^?$发给Alice，Alice通过对比是$k_c^0$还是$k_c^1$得知计算结果是0还是1。由于整个过程大家收发的都是密文或随机数，所以没有有效信息泄露。
 
