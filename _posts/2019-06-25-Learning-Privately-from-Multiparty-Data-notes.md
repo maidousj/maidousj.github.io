@@ -6,7 +6,7 @@ image: /assets/images/
 headerImage: false
 category: blog
 tag:
-- Learning-Privately-from-Multiparty-Data-notes
+- PPML
 - DP
 author: Sun
 ---
@@ -49,7 +49,15 @@ Hamm J, Cao Y, Belkin M. Learning privately from multiparty data[C]//Internation
 
 然后提了一些假设，类似于[2]中的：
 
-<img src="/assets/images/snapshot4paper/icml16-assume.png " width = "400" align=center />
+![](/assets/images/snapshot4paper/icml16-assume.png){:width="400"}
+
+
+
+
+
+
+
+
 
 
 
