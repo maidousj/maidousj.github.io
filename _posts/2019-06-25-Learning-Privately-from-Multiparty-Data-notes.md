@@ -95,11 +95,45 @@ $$ \leq \frac{1}{N} \sum_{i=1}^{N} \Vert x_i \Vert \times \vert l'(w^Tx_i) + l'(
 
 注意到假设了$\Vert x \Vert \leq 1 \text{ and } \vert l'(\cdot) \vert \leq 1$。最坏的情况是每个$v(x_i)$和$v'(x_i)$都不相同，因此the RHS of $*$ is bounded by 2. 因此，$w_s$的$L_2$ sensitivity是
 
-$$\max_{S,S'} \Vert w_s - w_{s'} \Vert \leq \frac{2}{\lambda}$$.
+$$\max_{S,S'} \Vert w_s - w_{s'} \Vert \leq \frac{2}{\lambda}$$
 
 因此得证。
 
-##### Performance issues of 
+
+
+##### Performance issues of majority voting
+
+分析majority-voted ERM的误差。主要被两部分bound，添加的noise和risk的期望与实际的差距。majority-voted ERM的敏感度是$\frac{2}{\lambda}$，而标准的ERM是$\frac{2}{N \lambda}$，对应的误差bound是
+
+$$R(w_p) \leq R(w_0) + O(\epsilon^{-2}) + O(N^{-1})$$
+
+with high probability。但是如果$\epsilon$很小的时候，constant gap $O(\epsilon^{-2})$会很大，不能保证successful learning。引起这个的原因是multiparty voting的最坏结果：假设投票的$M-1$个打平(M是奇数)，那么敏感度的最坏情况就是，剩下的那个local分类器是相反的，这样辅助数据所有的标签都是相反的，最终得到的global分类器是完全不同的。
+
+
+
+##### Better yet: weighted ERM with soft labels
+
+设$\alpha(x)$是$M$个分类器中把sample $x$分成正例的比例，引入weighted loss：
+
+$$l^{\alpha} (\cdot) = \alpha(x) l(w^T x) + (1-\alpha(x)) l(-w^Tx)$$.
+
+这样一来，如果$M$个votes全是正的或者负的，则此时的loss和original loss是一样的；而当正负预测正好相等时，loss也不会像之前的那种对单个vote那么敏感。特别地，
+
+> a single vote can change $l^{\alpha}(\cdot)$ only by a factor of $\frac{1}{M}$.
+
+> Lemma 2. For any $w$, the expection of the weighted loss is asymptotically the expection of the unweighted loss:
+>
+> $$\lim_{M \rightarrow \infin} E_x[l^{\alpha}(w)] = E_{x,v}[l(w^Txv)].$$
+
+Lemma 2表明weighted loss的期望和标准loss的期望是渐进相等的，when the target v is a *probabilistic* concept from $P(h(x) = v)$ of the random hypothesis, as opposed to a deterministic concept $v(x)$ from majority voting.
+
+![image-20190627110759558](/assets/images/snapshot4paper/icml16-weighted-loss.png){:width="400"}
+
+然后仍然用output perturbation来学习满足DP的分类器。如算法2所示。
+
+![image-20190627111002693](/assets/images/snapshot4paper/icml16-alg2.png){:width="400"}
+
+##### Privacy and performance
 
 
 
