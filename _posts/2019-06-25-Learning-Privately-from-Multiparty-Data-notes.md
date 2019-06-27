@@ -123,7 +123,7 @@ $$l^{\alpha} (\cdot) = \alpha(x) l(w^T x) + (1-\alpha(x)) l(-w^Tx)$$.
 
 > Lemma 2. For any $w$, the expection of the weighted loss is asymptotically the expection of the unweighted loss:
 >
-> $$\lim_{M \rightarrow \infin} E_x[l^{\alpha}(w)] = E_{x,v}[l(w^Txv)].$$
+> $$\lim_{M \rightarrow \infty} E_x[l^{\alpha}(w)] = E_{x,v}[l(w^Txv)].$$
 
 Lemma 2表明weighted loss的期望和标准loss的期望是渐进相等的，when the target v is a *probabilistic* concept from $P(h(x) = v)$ of the random hypothesis, as opposed to a deterministic concept $v(x)$ from majority voting.
 
@@ -135,7 +135,24 @@ Lemma 2表明weighted loss的期望和标准loss的期望是渐进相等的，wh
 
 ##### Privacy and performance
 
+> **Theorem 3.** *The perturbed output* $w_p = w_s + \eta$ *from Algorithm 2 with* $p(\eta) \propto e^{-\frac{M \lambda \epsilon}{2} \Vert \eta \Vert}$ *is* $\epsilon$*-differentially private.*
 
+这样，只需要$1/M$的噪声量就可以达到同样的DP。
+
+![image-20190627121929992](/assets/images/snapshot4paper/icml16-theorem4.png){:width="400"}
+
+#### Related work
+
+Parameter averaging through SMC[1]. Private exchange of gradient information to
+minimize empirical risks incrementally[6,7]. 本文motivated by[1]，但是用了和[1]完全不同的方法来aggregate local classifiers. 
+
+> We use an ensemble approach and average the classifier decisions[8] instead of parameters, which makes our approach applicable to arbitrary and mixed classifier types.
+
+注记一下：所谓ensemble就是直接放一起呗：$\{h_1,h_2,\cdots,h_M\}$，所以可以有不同的类型，主要用来对unlabled data进行voting呗。以半监督的方式[4,9]。
+
+#### Experiments
+
+用了三组数据：活动识别、网络入侵检测、恶意URL检测。对比了算法1，2和[1]中的parameter averaging，以及单个local分类器，和non-private的global分类器。算法1效果挺一般，算法2比[1]中的方法强。
 
 
 
@@ -150,3 +167,11 @@ Lemma 2表明weighted loss的期望和标准loss的期望是渐进相等的，wh
 [4] Ji, Zhanglong, Jiang, Xiaoqian, Wang, Shuang, Xiong, Li, and Ohno-Machado, Lucila. Differentially private distributed logistic regression using private and public data. *BMC medical genomics*, 7(Suppl 1):S14, 2014.
 
 [5] Dwork, Cynthia and Roth, Aaron. The algorithmic foundations of differential privacy. *Theoretical Computer Science*, 9(3-4): 211–407, 2013.
+
+[6] Rajkumar, Arun and Agarwal, Shivani. A differentially private stochastic gradient descent algorithm for multiparty classification. In *International Conference on Artificial Intelligence and Statistics*, pp. 933–941, 2012.
+
+[7] Hamm, Jihun, Champion, Adam, Chen, Guoxing, Belkin, Mikhail, and Xuan, Dong. Crowd-ML: A privacy-preserving learning framework for a crowd of smart devices. In *Proceedings of the 35th IEEE International Conference on Distributed Computing Systems (ICDCS)*. IEEE, 2015.
+
+[8] Breiman, Leo. Bagging predictors. *Machine learning*, 24(2):123–140, 1996a.
+
+[9] Jagannathan, Geetha, Monteleoni, Claire, and Pillaipakkamnatt, Krishnan. A semi-supervised learning approach to differential privacy. In *Data Mining Workshops (ICDMW), 2013 IEEE 13th International Conference on*, pp. 841–848. IEEE, 2013.
