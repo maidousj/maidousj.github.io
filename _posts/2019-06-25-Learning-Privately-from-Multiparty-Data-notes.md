@@ -115,7 +115,7 @@ with high probability。但是如果$\epsilon$很小的时候，constant gap $O(
 
 设$\alpha(x)$是$M$个分类器中把sample $x$分成正例的比例，引入weighted loss：
 
-$$l^{\alpha} (\cdot) = \alpha(x) l(w^T x) + (1-\alpha(x)) l(-w^Tx)$$.
+$$l^{\alpha} (\cdot) = \alpha(x) l(w^T x) + (1-\alpha(x)) l(-w^Tx)$$
 
 这样一来，如果$M$个votes全是正的或者负的，则此时的loss和original loss是一样的；而当正负预测正好相等时，loss也不会像之前的那种对单个vote那么敏感。特别地，
 
@@ -123,7 +123,7 @@ $$l^{\alpha} (\cdot) = \alpha(x) l(w^T x) + (1-\alpha(x)) l(-w^Tx)$$.
 
 > Lemma 2. For any $w$, the expection of the weighted loss is asymptotically the expection of the unweighted loss:
 >
-> $$\lim_{M \rightarrow \infty} E_x[l^{\alpha}(w)] = E_{x,v}[l(w^Txv)].$$
+> $$\lim_{M \rightarrow \infty} E_x[l^{\alpha}(w)] = E_{x,v}[l(w^Txv)]$$
 
 Lemma 2表明weighted loss的期望和标准loss的期望是渐进相等的，when the target v is a *probabilistic* concept from $P(h(x) = v)$ of the random hypothesis, as opposed to a deterministic concept $v(x)$ from majority voting.
 
