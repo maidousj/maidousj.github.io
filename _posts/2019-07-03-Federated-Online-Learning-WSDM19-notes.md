@@ -27,3 +27,15 @@ WSDM, CCF B类会议, 数据库方向。
 提出了满足上述需求的算法FOLtR-ES。其中一部分是privatization procedure，允许它提供$\epsilon$-local DP，即保护客户免受可以访问通信消息的对手的攻击。此过程可应用于任何绝对在线度量，该度量采用有限多个值或可离散化为有限域。
 
 实验是基于点击模拟的方法和公开的数据集MQ2007和MQ2008。和离线的训练进行了对比如线性回归模型和RankingSVM。实验结果表明，FOLtR-ES可以优化排序模型，在optimized online metric, Max Reciprocal Rank方面和baseline性能相似。
+
+
+
+#### Introduction
+
+由于隐私问题和有限的带宽，移动端的数据最好可以以本地的方式来训练模型。
+
+
+
+#### Reference
+
+[1] H.Brendan McMahan,Eider Moore,Daniel Ramage,and Blaise Agüeray Arcas. 2016. Federated Learning of Deep Networks using Model Averaging. CoRR abs/1602.05629 (2016). arXiv:1602.05629 
