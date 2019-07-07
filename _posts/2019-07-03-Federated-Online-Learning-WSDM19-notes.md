@@ -55,7 +55,37 @@ finitely many values提供了$\epsilon$-local DP的保证。
 
 现有的online learning to rank都是集中式学习的，ranker的训练方法需要知道用户的查询和点击。本文提出的学习算法没有关于用户与结果列表交互方式和优化质量度量的假设，因此它无缝地解决了结果的相互依赖性，多样性要求，位置偏差等。
 
-最近的集中式在线学习排序算法，主要考虑learn with interleaving/multileaving feedback，比如Multileave Gradient Descent [13]
+最近的集中式在线学习排序算法，主要考虑learn with interleaving/multileaving feedback，比如Multileave Gradient Descent [13]。
+
+> It puts the burden of proving that the interleaving methods are applicable and unbiased on the application owner. Indeed, interleaving methods were only validated in the document [5] and image search [20] verticals of large search engines, and validating those methods for complex layouts (e.g. those considered in [31]) might be problematic. Hence, we argue that the ability to directly optimize the absolute measures of ranking quality (e.g. time before the first click [37]) is of a higher practical interest. We leave the adaptation of FOLtR-ES to the interleaving feedback as a potential direction of future work.
+
+> 这段不知道在说什么.
+
+##### Federated and privacy-aware learning
+
+第一个联邦学习算法，Federated Averaging由[1]提出。该算法中，每个on-device模型通过一些SGD步骤更新，接下来在data center被平均，然后每个客户端再下载聚合后的模型。[14] 对联邦学习的通信开销进行了改善。[15] 研究了word-level language models in federated learning setup。后来的工作中，Federated Averaging 和 Federated SGD (essentially, large-batch SGD)和隐私保证一起讨论。
+
+本文基于已有的工作并做了两方面的扩展。首先，扩展到了在线学习排序问题上，主要挑战是：
+
+> (a) bandit feedback & the need for exploration, and (b) non-continuous optimized measures of quality.
+
+其次，之前的工作需要 trusted curator ε-differential private regime, only providing guarantees against the private data being extracted from the (aggregated) learned models. 因此，它们不能防止能够访问所传送消息的敌手，例如：可以访问中央优化服务器。 相比之下，FOLtR-ES提供客户端级别的$\epsilon$-本地差异隐私，其中非私有化数据永远不会离开客户端的设备。
+
+#### Federated Online Learning to Rank with Evolution Strategies
+
+##### Optimization Scenarion
+
+优化场景和[15]中的没有什么不同，用了Federated SGD。假设排序模型在本地应用，在信息检索时可以通过完全在客户端检索或者隐私保护的检索系统来保护用户隐私。
+
+> 后边又提了一遍，装了应用程序以后，客户端会先下载排序模型，然后执行多次交互，性能指标在本地进行平均然后发到中央服务器；在收集来自N个客户端的消息之后，服务器将它们组合在单个梯度估计中并执行优化步骤，形成新模型；最后，客户端从服务器下载最新的模型。
+>
+> 为什么感觉这段完全没有用。这不是车轱辘话又说了一次嘛。。
+
+
+
+
+
+
 
 
 
@@ -85,4 +115,8 @@ finitely many values提供了$\epsilon$-local DP的保证。
 
 [12] Yisong Yue and Thorsten Joachims. 2009. Interactively optimizing information retrieval systems as a dueling bandits problem. In ICML. 
 
-[13] AnneSchuth,HarrieOosterhuis,ShimonWhiteson,andMaartendeRijke.2016. Multileave gradient descent for fast online learning to rank. In WSDM. 
+[13] Anne Schuth, Harrie Oosterhuis, Shimon Whiteson, and Maartende Rijke. 2016. Multileave gradient descent for fast online learning to rank. In WSDM. 
+
+[14] Jakub Konečny`, H Brendan McMahan, Felix X Yu, Peter Richtárik, Ananda Theertha Suresh, and Dave Bacon. 2016. Federated learning: Strategies for improving communication efficiency. arXiv:1610.05492 (2016). 
+
+[15] Brendan McMahan, Daniel Ramage, Kunal Talwar, and Li Zhang. 2017. Learning differentially private language models without losing accuracy. arXiv:1710.06963 (2017). 
