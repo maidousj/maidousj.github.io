@@ -81,6 +81,8 @@ finitely many values提供了$\epsilon$-local DP的保证。
 >
 > 为什么感觉这段完全没有用。这不是车轱辘话又说了一次嘛。。
 
+##### Getting a Gradient Estimate
+
 
 
 
