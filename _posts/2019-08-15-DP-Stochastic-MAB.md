@@ -51,7 +51,11 @@ k个arm，维护k棵树，每棵树保证是$\epsilon/k$-DP，整个算法就满
 
 整个算法的regret可以由$\mathbb{E}[\sum_{a \in C: \mu_a < \mu_a^* } \Delta_a n_a(T)]$给出，其中$\Delta_a = \mu_a^*-\mu_a$。首先通过计算整个reward总值中被加入的噪声量的bound，然后用这个bound可以表明次优的arm被选的次数很少。然后通过分析次优arm的exploration and exploitation阶段，表明在$O(\frac{k\log^2T \log(kT)}{\epsilon\Delta^2})$轮的选择后，就大概率不会再被选了。（这种方法主要是按照non-private UCB sampling [3]来分析的）。
 
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma5-1.png){:width = 400}
 
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma5-2.png){:width = 400}
+
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma6.png){:width = 400}
 
 #### Reference
 
