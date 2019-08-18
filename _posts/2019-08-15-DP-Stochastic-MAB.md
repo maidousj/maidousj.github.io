@@ -57,6 +57,16 @@ k个arm，维护k棵树，每棵树保证是$\epsilon/k$-DP，整个算法就满
 
 ![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma6.png){:width = 400}
 
+#### Private Thompson Sampling
+
+尽管TS算法在20世纪早期就被提出，但是[4]才首次对TS算法进行了regret分析，表明是对数相关于次数T的。**本文继续研究private TS算法的动机是，在non-private版本中，TS的性能比UCB好很多。**
+
+TS算法的基本思想也比较简单，对于$k$个arms来说，记$r_{a_1}(t),\dots,r_{a_k}(t)$是每个arm得到奖励的次数，$n_{a_1}(t),\dots,n_{a_k}(t)$是相应arm被pull的总数，选arm的规则是，从beta分布$\theta\B$
+
+
+
+
+
 #### Reference
 
 [1] TH Hubert Chan, Elaine Shi, and Dawn Song. Private and continual release of statistics. In *ICALP*. 2010 
@@ -64,4 +74,6 @@ k个arm，维护k棵树，每棵树保证是$\epsilon/k$-DP，整个算法就满
 [2] Cynthia Dwork, Moni Naor, Omer Reingold, Guy Roth- blum, and Salil Vadhan. On the complexity of differentially private data release: efficient algorithms and hardness re- sults. In *STOC*, pages 381–390, 2009. 
 
 [3] Kamalika Chaudhuri. Topics in online learning: Lecture notes. 2011. 
+
+[4] Shipra Agrawal and Navin Goyal. Analysis of thompson sampling for the multi-armed bandit problem. In *COLT*, 2012. 
 
