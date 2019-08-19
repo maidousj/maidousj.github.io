@@ -61,9 +61,41 @@ k个arm，维护k棵树，每棵树保证是$\epsilon/k$-DP，整个算法就满
 
 尽管TS算法在20世纪早期就被提出，但是[4]才首次对TS算法进行了regret分析，表明是对数相关于次数T的。**本文继续研究private TS算法的动机是，在non-private版本中，TS的性能比UCB好很多。**
 
-TS算法的基本思想也比较简单，对于$k$个arms来说，记$r_{a_1}(t),\dots,r_{a_k}(t)$是每个arm得到奖励的次数，$n_{a_1}(t),\dots,n_{a_k}(t)$是相应arm被pull的总数，选arm的规则是，从beta分布$\theta\B$
+TS算法的基本思想也比较简单，对于$k$个arms来说，在时刻$t$，记$r_{a_1}(t),\dots,r_{a_k}(t)$是每个arm得到奖励的次数，$n_{a_1}(t),\dots,n_{a_k}(t)$是相应arm被pull的总数，选arm的规则是，从beta分布$\theta_i\sim Beta(r_{a_i}(t)+1, n_{a_i}(t)-r_{a_i}(t)+1)$中选出最高的$\theta_i$。[4]给出了该算法的regret是$O(\sum_{a\in C-a^*} (\frac{1}{\Delta_a^2})^2 \log T)$,其中$a^*$是最优的arm，$\Delta_a=\mu_{a^*}-\mu_a$。
 
+在MAB问题中，如果某个arm在最开始表现不好，那么它就很难在被pull，所以它的经验均值要比真实均值小。
 
+> One interesting observation in the MAB problems is that all the sequential algorithms would encourage a downward bias, which means that if an arm does not give good results initially then it will not be pulled again, therefore it’s empirical mean would be much lower than its true mean.
+
+UCB算法通过向经验均值添加pull次数($n_a(t)$)的单调递减函数来解决该问题。
+
+> But in case of Thompson sampling, we are randomizing our decision hence the bias correction mechanism is different, it is due to randomization. In Thompson sampling, the biggest challenge is to bound the number of mistakes in the initial rounds.Moreover to ensure differential privacy, we introduce additional randomness to the original Thompson sampling algorithm, it becomes even harder for us to analyze the number of mistakes in the initial rounds.
+
+因此，本文采取了不同的方法，将算法分成了明确的exploration阶段和exploration & exploitation阶段。前者的思想是估计两个arm的偏差（在足够的置信度下）而不理会犯了错误的数量。后者用标准的TS算法，除了保证rewards是满足DP条件下获取的。
+
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/privateTS.png){:width = 400}
+
+可以看出算法2分为三部分，第一部分是对$\Delta$的估计，
+
+> Notice that in the first part, each arm i, $i\in[k]$ is pulled in batches of m-pulls, till the condition in Line 8 in Algorithm 2 is satisfied. If each of this batch is made $\epsilon/2k$-differentially private, then by *parallel composition* property of differential privacy, the first phase is $\epsilon/2$-differentially private.
+
+这里有点奇怪，每个arm是$\epsilon/2k$的话，k个arm按照并行组合性怎么还需要加起来呢？算法第5行加入的是$Lap(\frac{2k}{\epsilon m})$的噪声量。第9行如果$T \leq \tau$怎么办(regret分析给出了答案)？**如果T不知道怎么办？**
+
+接下来需要随机pull一定次数来build confidence。用private trees来保证隐私。
+
+最后是混合阶段，同样用树来保证隐私。15行中的$f$是什么？
+
+##### Regret Analysis
+
+> Moreover, we argue that the gap estimation runs for at most poly $\log T$ number of rounds.
+
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/utility_private_ts.png){:width = 400}
+
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/utility_private_ts2.png){:width = 400}
+
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma9.png){:width = 400}
+
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma10.png){:width = 400}
 
 
 
