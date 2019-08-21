@@ -17,7 +17,7 @@ author: Sun
 
 主要结论是说基于高斯先验的TS算法 ([1]中的算法2) 已经是满足DP的。
 
-![image-20190815142143457](/assets/images/2019-08-15-DP-Thompson-Sampling/image-20190815142143457.png){:width = 400}
+![image-20190815142143457](/assets/images/2019-08-15-DP-Thompson-Sampling/image-20190815142143457.png){:width="400"}
 
 理论1表明T轮迭代后的privacy loss是$O(\ln^2 T)$的。
 

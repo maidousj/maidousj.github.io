@@ -35,7 +35,7 @@ UCB的regret bound是$O(\log T)$的。
 
 每个arm对应的reward总值$r_a(t)$只依赖于我们想要保护的数据集，因此只要保证了$r_a(t) \ \ t\in[T]$ **序列**的隐私性就可以保证整个算法的隐私性，也就是只要每个arm满足$\epsilon/k$-DP，整个算法就满足$\epsilon$-DP。
 
-![image-20190816161000372](/assets/images/2019-08-15-DP-Stochastic-MAB/privateUCB.png){:width = 400}
+![image-20190816161000372](/assets/images/2019-08-15-DP-Stochastic-MAB/privateUCB.png){:width="400"}
 
 > Additionally, to counter the noise added to the empirical mean, we loosen the confidence interval for the biases of each arm.
 
@@ -47,15 +47,15 @@ k个arm，维护k棵树，每棵树保证是$\epsilon/k$-DP，整个算法就满
 
 ##### Utility Guarantee
 
-![image-20190816162305967](/assets/images/2019-08-15-DP-Stochastic-MAB/utility_private_ucb.png){:width = 400}
+![image-20190816162305967](/assets/images/2019-08-15-DP-Stochastic-MAB/utility_private_ucb.png){:width="400"}
 
 整个算法的regret可以由$\mathbb{E}[\sum_{a \in C: \mu_a < \mu_a^* } \Delta_a n_a(T)]$给出，其中$\Delta_a = \mu_a^*-\mu_a$。首先通过计算整个reward总值中被加入的噪声量的bound，然后用这个bound可以表明次优的arm被选的次数很少。然后通过分析次优arm的exploration and exploitation阶段，表明在$O(\frac{k\log^2T \log(kT)}{\epsilon\Delta^2})$轮的选择后，就大概率不会再被选了。（这种方法主要是按照non-private UCB sampling [3]来分析的）。
 
-![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma5-1.png){:width = 400}
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma5-1.png){:width="400"}
 
-![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma5-2.png){:width = 400}
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma5-2.png){:width="400"}
 
-![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma6.png){:width = 400}
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma6.png){:width="400"}
 
 #### Private Thompson Sampling
 
@@ -73,7 +73,7 @@ UCB算法通过向经验均值添加pull次数($n_a(t)$)的单调递减函数来
 
 因此，本文采取了不同的方法，将算法分成了明确的exploration阶段和exploration & exploitation阶段。前者的思想是估计两个arm的偏差（在足够的置信度下）而不理会犯了错误的数量。后者用标准的TS算法，除了保证rewards是满足DP条件下获取的。
 
-![](/assets/images/2019-08-15-DP-Stochastic-MAB/privateTS.png){:width = 400}
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/privateTS.png){:width="400"}
 
 可以看出算法2分为三部分，第一部分是对$\Delta$的估计，
 
@@ -89,13 +89,13 @@ UCB算法通过向经验均值添加pull次数($n_a(t)$)的单调递减函数来
 
 > Moreover, we argue that the gap estimation runs for at most poly $\log T$ number of rounds.
 
-![](/assets/images/2019-08-15-DP-Stochastic-MAB/utility_private_ts.png){:width = 400}
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/utility_private_ts.png){:width="400"}
 
-![](/assets/images/2019-08-15-DP-Stochastic-MAB/utility_private_ts2.png){:width = 400}
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/utility_private_ts2.png){:width="400"}
 
-![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma9.png){:width = 400}
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma9.png){:width="400"}
 
-![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma10.png){:width = 400}
+![](/assets/images/2019-08-15-DP-Stochastic-MAB/lamma10.png){:width="400"}
 
 
 

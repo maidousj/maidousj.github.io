@@ -17,7 +17,7 @@ Yao大佬在1986年提出的。可以叫多方安全计算的基石。
 
 主要思想是离散的、fixed-size function可以转化为逻辑门电路，如果有一种可以安全地计算这个电路的方法，那么就可以安全地计算对应的function。
 
-![image-20190624152427500](/assets/images/gc-gate.png){:width = 400}
+![image-20190624152427500](/assets/images/gc-gate.png){:width="400"}
 
 以AND function（与门）为例，实际上可以看成是一张真值表，如图左所示，两个输入同为1时，输出才为1；否则输出为0。
 

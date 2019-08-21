@@ -50,7 +50,7 @@ A1-1[1]:
 
 Jackknife([刀切法](https://www.baidu.com/s?wd=刀切&tn=24004469_oem_dg&rsv_dl=gh_pl_sl_csd))是有Maurice Quenouille (1949)提出的一种再抽样方法，其原始动机是降低估计的偏差。Jackknife类似于“Leave one out”的交叉验证方法。令X=(X1,X2,…,Xn)为观测到的样本，定义第i个Jackknife样本为丢掉第i个样本后的剩余样本即
 
-![15469714-3a9c6f945f666a00](/assets/images/image-0723-jackknife.png){:width = 400}
+![15469714-3a9c6f945f666a00](/assets/images/image-0723-jackknife.png)
 
 由此生成的Jackknife样本集之间的差异很小，每两个Jackknife样本中只有两个单个的原始样本不同。
 
