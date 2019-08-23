@@ -135,6 +135,12 @@ $$
 
 > 目标扰动方法并不基于函数的敏感度，而是通过一个巧妙的方法建立起了随机噪声与输出之间的对应关系，从而实现输出的随机性，形成满足差分隐私的隐私保护算法。这样的方式非常地亮眼，但很可惜地是后来也没有类似的构建随机性的dpERM方法（暂未读到）。
 
+最后，满足一定条件的凸优化问题都可以用这种方法来解决：
+
+![](/assets/images/2019-08-21-pplr/image-20190823181847017.png)
+
+
+
 #### Reference 
 
 [1] K. Nissim, S. Raskhodnikova, and A. Smith. Smooth sensitivity and sampling in private data analysis. In D. S. Johnson and U. Feige, editors, STOC, pages 75–84. ACM, 2007.
