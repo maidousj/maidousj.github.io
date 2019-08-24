@@ -12,6 +12,16 @@ tag:
 author: Sun
 ---
 
+#### Background
+
+先引用一下知乎大佬[2]的线性分类模型泄漏什么隐私？
+
+> 首先简单说说线性分类模型的隐私泄露问题。最为直观地，在一维情况下，线性分类器会返回样本的中位数，而中位数通常是一个具体样本的取值，那么这个样本的即被暴露给了获得模型的使用者，我们认为这侵犯到了他的隐私。在高维情况下依然存在相似的情况。具体见发表于SODA13的The Power of Linear Reconstruction Attacks一文。
+>
+> 我们期望得到一类在差分隐私框架下的机器学习模型A，使得原先的机器学习模型具有隐私保护能力。具体而言，即一类经验误差最小化模型，再具体而言...一类线性核的经验误差最小化模型(Logistic Regression/SVM/Least squares...)
+
+
+
 大神Kamalika Chaudhuri这一系列的开坑之作，发表在nips2008和jmlr2011上。主要思路就是Output Perturbation和Objective Perturbation。
 
 在背景介绍里提到[1]虽然加更少的噪声（smoothed-sensitivity）就可以保护隐私，但是某个函数的smoothed sensitivity比较难计算。
@@ -96,17 +106,19 @@ $$Jacobi(w^{priv}\rightarrow b\vert D)=-A$$
 
 $$Jacobi(w^{priv}\rightarrow b\vert D')=-(A+E)$$ (没懂)
 
-令$\lambda_1(M)$和$\lambda_2(M)$分别表示矩阵M的最大的和第二大的特征值。
+令$\lambda_1(M)$和$\lambda_2(M)$分别表示矩阵M的最大的和第二大的特征值。		
 
 $$\frac{\vert\det(Jacobi(w^{priv}\rightarrow b\vert D'))\vert}{\vert\det(Jacobi(w^{priv}\rightarrow b\vert D))\vert}=\frac{ \vert\det(A+E)\vert}{\vert\det A\vert}=\vert 1+\lambda_1(A^{-1}E)+\lambda_2(A^{-1}E)+\lambda_1(A^{-1}E)\lambda_2(A^{-1}E)\vert.$$
 
 对于$j=1,2$，有$\vert\lambda_j(A^{-1}E)\vert \leq \frac{\vert\lambda_j(E)\vert}{n\lambda}$,
 
-根据三角不等式，
+根据三角不等式，  
 $$
-\left|\lambda_{1}(E)\right|+\left|\lambda_{2}(E)\right| \leq\left|y_{n}^{2} \ell^{\prime \prime}\left(y_{n} ({w}^{priv})^{T} \mathbf{x}_{n}\right)\right| \cdot\left\|\mathbf{x}_{n}\right\|+\left|-\left(y_{n}^{\prime}\right)^{2} \ell^{\prime \prime}\left(y_{n}^{\prime} ({w}^{priv})^{T} \mathbf{x}_{n}^{\prime}\right)\right| \cdot\left\|\mathbf{x}_{n}^{\prime}\right\|
+\left|\lambda_{1}(E)\right|+\left|\lambda_{2}(E)\right| \leq\left|y_{n}^{2} \ell^{\prime \prime}\left(y_{n} ({w}^{priv})^{T} \mathbf{x}_{n}\right)\right| \cdot\left\|\mathbf{x}_{n}\right\|+\left|-\left(y_{n}^{\prime}\right)^{2} \ell^{\prime \prime}\left(y_{n}^{\prime} ({w}^{priv})^{T} \mathbf{x}_{n}^{\prime}\right)\right| \cdot\left\|\mathbf{x}_{n}^{\prime}\right\|  
 $$
-然后根据假设中的bound，
+
+
+然后根据假设中的bound，  
 $$
 \left|\lambda_{1}(E)\right|+\left|\lambda_{2}(E)\right| \leq 2 c
 $$
