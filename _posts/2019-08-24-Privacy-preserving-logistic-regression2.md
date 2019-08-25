@@ -42,7 +42,11 @@ $$\rho(z) \propto e^{-(\alpha / 2)\|z\|}$$.
 
 $$w_{t+1}=w_{t}-\eta_{t}\left(\lambda w_{t}+\frac{1}{b} \sum_{\left(x_{i}, y_{i}\right) \in B_{t}} \nabla \ell\left(w_{t}, x_{i}, y_{i}\right)+\frac{1}{b} Z_{t}\right)$$.
 
+![](/assets/images/2019-08-24-pplr2/image-20190825231923025.png)
 
+定理这里说如果$\|\nabla \ell(w, x, y)\| \leq 1$。
+
+$$\Delta_{g r e d}=\sup \left\|\nabla \ell(w, x, y)-\nabla \ell\left(w, x^{\prime}, y^{\prime}\right)\right\|=2$$
 
 
 
