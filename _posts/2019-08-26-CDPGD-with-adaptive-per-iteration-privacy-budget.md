@@ -58,15 +58,40 @@ $$\begin{aligned} \operatorname{Var}\left(\hat{S}_{t}\right) &=\left(\rho_{t}^{2
 
 也就是说，先计算$S_t$，再计算$S_{t}^{\prime}$，最后得到$\hat{S}_{t}$，一共使用了$\rho_{t+1}$的隐私预算，产生答案的方差是$\frac{\Delta_{2}(\nabla f)^{2}}{2 \rho_{t+1}}$。仿佛没有消耗$\rho_t$一样。
 
+#### Algorithm
+
+![](/assets/images/2019-08-26-CDPGD/image-20190828090654933.png){:width="450"}
+
+算法2（DP-AGD，differentially private adaptive gradient descent algorithm）分为三个部分：
+
+* Private Gradient Approximation
+
+  用$\widetilde{\mathbf{g}}=\nabla f\left(\mathbf{w}_{t}\right)+\mathcal{N}\left(0, \sigma^{2} \mathbf{I}\right)$计算梯度近似，噪声量$\sigma^2$取决于$\Delta_2(g)$。为了对这个敏感度进行bound，之前的工作[2,9]假设$\|\mathbf{x}\| \leq 1$，而本文对梯度进行了clip，计算梯度$\nabla \ell\left(\mathbf{w}_{t} ; d_{i}\right)$ for $i=1, \ldots, n$，然后除以$\left(1, \frac{\left\|\nabla \ell\left(\mathbf{w}_{t} ; d_{i}\right)\right\|_{2}}{C_{\mathrm{grad}}}\right)$，求和，加入噪声$C_{\mathrm{grad}}^{2} / 2 \rho_{\mathrm{ng}}$，最后进行归一化处理。这样可以保证梯度的敏感度是$C_{\mathrm{grad}}$而且满足$\rho_{\mathrm{ng}}-\mathrm{ZCDP}$。
+
+* Step Size Selection
+
+  用$\rho_{nmax}$的隐私预算对$\widetilde{\boldsymbol{g}}_{t}$进行测试，看梯度是否为下降方向。首先，算法构造了一个集合$\Omega=\left\{f\left(\mathbf{w}_{t}-\alpha \widetilde{\mathbf{g}}_{t}\right) : \alpha \in \Phi\right\}$，每个元素表示在$\mathbf{w}_{t}-\alpha \widetilde{\mathbf{g}}_{t}$这个处的目标函数值，$\Phi$是一个预先定义的step size的集合。然后通过NoisyMax算法来决定哪个step size对应了最小的目标函数值。同样，为了对sensitivity进行bound，采用了clip的方式，但是并没有进行归一化，因为不会影响NoisyMax的结果。
+
+  $\Phi$的第一个元素设置为0，这样$\Omega$中始终包括当前的目标函数值$f\left(\mathbf{w}_{t}\right)$，$i$表示NoisyMax返回的index，如果$i>0$，就选择step size$\alpha_i$，如果$i=0$，表明当前梯度值不是下降方向。
+
+* Adaptive Noise Reduction
+
+  如果$-\widetilde{\mathbf{g}}_{t}$不是一个下降方向，那么算法会在接下来的一次迭代中增加隐私预算，$\rho_{\mathrm{ng}} \leftarrow(1+\gamma) \rho_{\mathrm{ng}}$，然后用$\rho_{\mathrm{ng}}-\rho_{\mathrm{old}}$的隐私预算重新计算梯度，直到NoisyMax返回一个表示下降方向的梯度index。
 
 
+#### Experiments
 
+![](/assets/images/2019-08-26-CDPGD/image-20190828134358442.png)
+
+SGD-MA在$\epsilon>0.8$时效果很好，这是由于采用了moments accountant方案结合了由于subsampling产生的privacy amplification，使privacy loss的bound更紧，可以接受更多的迭代次数。但是在更严格的privacy区域表现并不好。
+
+> With δ fixed to 10−8, we empirically observe that, under the moments accountant, one single iteration of SGD update can incur the privacy cost of $\epsilon \approx 0.5756$. This renders the moments accountant method impractical when high level of privacy protection is required.
 
 #### Reference
 
 [1] Cynthia Dwork, Aaron Roth, et al. 2014. The algorithmic foundations of differ- ential privacy. Foundations and Trends® in Theoretical Computer Science 9, 3–4 (2014), 211–407.
 
-[2] Kamalika Chaudhuri, Claire Monteleoni, and Anand D Sarwate. 2011. Differen- tially private empirical risk minimization. Journal ofMachine Learning Research 12, Mar (2011), 1069–1109
+[2] Kamalika Chaudhuri, Claire Monteleoni, and Anand D Sarwate. 2011. Differentially private empirical risk minimization. Journal ofMachine Learning Research 12, Mar (2011), 1069–1109
 
 [3] Cynthia Dwork, Frank McSherry, Kobbi Nissim, and Adam Smith. 2006. Cali- brating noise to sensitivity in private data analysis. In Theory ofCryptography Conference. Springer, 265–284.
 
@@ -81,7 +106,7 @@ Information Processing Systems 30. Curran Associates, Inc., 2719–2728.
 
 [8] Yu-Xiang Wang, Stephen Fienberg, and Alex Smola. 2015. Privacy for free: Posterior sampling and stochastic gradient monte carlo. In International Conference on Machine Learning. 2493–2502.
 
-[9] Daniel Kifer, Adam Smith, and Abhradeep Thakurta. 2012. Private convex empiri- cal risk minimization and high-dimensional regression. In Conference on Learning Theory. 25–1.
+[9] Daniel Kifer, Adam Smith, and Abhradeep Thakurta. 2012. Private convex empirical risk minimization and high-dimensional regression. In Conference on Learning Theory. 25–1.
 
 [10] C. Dwork, G. N. Rothblum, and S. Vadhan. 2010. Boosting and Differential Privacy. In 2010 IEEE 51st Annual Symposium on Foundations ofComputer Science. 51–60.
 
