@@ -42,7 +42,7 @@ $$w^{priv}=w^*+b, b\sim \Gamma(d,\frac{2}{n\lambda})$$ (d应该是x的维度？b
 
 参考[2]，给出计算sensitivity的过程。
 
-$$G(w) = J(w,D)=\frac{1}{n}\sum_{i=1}^n l(w,(x_i,y_i))+\frac{1}{2}\Vert w \Vert^2$$
+$$G(w) = J(w,D)=\frac{1}{n}\sum_{i=1}^n l(w,(x_i,y_i))+\frac{\lambda}{2}\Vert w \Vert^2$$
 
 $$g(w)=\frac{1}{n}(l(y'_n, w^Tx'_n)-l(y_n, w^Tx_n)), J(w,D')=G(w)+g(w)$$
 
