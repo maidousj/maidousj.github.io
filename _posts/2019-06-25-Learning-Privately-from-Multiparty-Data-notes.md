@@ -1,10 +1,10 @@
 ---
-title: Learning Privately from Multiparty Data 阅读
+title: Learning Privately from Multiparty Data notes
 layout: post
 date: 2019-06-25 10:06
 image: /assets/images/
 headerImage: false
-category: blog
+category: Paper Reading
 tag:
 - PPML
 - DP
@@ -20,6 +20,8 @@ Hamm J, Cao Y, Belkin M. Learning privately from multiparty data[C]//Internation
 > transfer the ‘knowledge’ of the local classifier ensemble by first creating labeled data from auxiliary unlabeled data, and then train a global $\epsilon$-differentially private classifier.
 
 本文指出大部分的voting都太敏感，因此提出了新的risk weighted by class probabilities estimated from the ensemble。相对于非隐私的方案，误差控制在$O(\epsilon^{-2} M^{-2})$之内，$M$是parties的数量。
+
+<!--more-->
 
 #### Introduction
 

@@ -2,9 +2,9 @@
 title: 差分隐私的组合性质总结
 layout: post
 date: 2019-01-23 17:22
-image: /assets/images/cse660.png
-headerImage: true
-category: blog
+image: /assets/images/
+headerImage: false
+category: Blog
 tag:
 - course
 - CSE660
@@ -14,6 +14,8 @@ author: Sun
 ---
 
 [从这来的](https://www.acsu.buffalo.edu/~gaboardi/teaching/cse660-Fall17/CSE660-18.pdf)，记录一下作为总结，之前各种survey看的云里雾里的，总算找到一个清晰的。
+
+<!--more-->
 
 #### 组合性
 

@@ -2,7 +2,7 @@
 title: "MacOS下安装ipdb的问题"
 layout: post
 date: 2017-06-26 22:07
-category: blog
+category: Blog
 tag:
 - pip
 - ipdb
@@ -18,6 +18,8 @@ author: Sun
 > 重启Mac即可
 > 如果想重新启动SIP机制重复上述步骤改用csrutil enable即可
 > 我们现在再看看sip的状态, 这样再安装ipdb/ipython、gevent再也不会提示无法写入的权限提示了
+
+<!--more-->
 
 ```latex
 $ csrutil status

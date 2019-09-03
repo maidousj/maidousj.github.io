@@ -4,7 +4,7 @@ layout: post
 date: 2019-08-19 15:10
 image: /assets/images/
 headerImage: false
-category: blog
+category: Blog
 tag:
 - Multi-armed Bandit
 - Thompson Sampling
@@ -14,6 +14,8 @@ author: Sun
 > https://www.youtube.com/watch?v=o6HBIGzQfJs
 >
 > youtube看到的视频，底下有个评论说讲的清楚，记一些有用的结论留存。
+
+<!--more-->
 
 ![](/assets/images/2019-08-19-TS-for-learning/image-20190819153456044.png)
 

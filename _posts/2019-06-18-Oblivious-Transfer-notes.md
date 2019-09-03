@@ -2,7 +2,7 @@
 title: Oblivious Transfer notes
 layout: post
 date: 2019-06-18 15:29
-category: blog
+category: Blog
 tag:
 - Oblivious Transfer
 author: Sun
@@ -22,6 +22,8 @@ OT是混淆电路(GC)等许多MPC方案的的基石，一种基础的安全多�
 > 粗看起来这种隐私条件似乎是无法满足的：旅行社只要把景点A的资料给到小淘，就必然了解了“小淘正在关注A景点”这一信息；除非旅行社把所有N份资料都给出，但是这又违背了旅行社的利益；
 >
 > 但是神奇的OT可以让交易在这种“不可能的条件”下达成。简而言之，在OT协议中，旅行社把他拥有的N份资料使用某种双方协商同意的加密算法和参数进行加密，然后发送给小淘；小淘可以从密文中解密出A的资料，而无法解密出其他N-1份资料。
+
+<!--more-->
 
 非正式的描述，以N=2为例，基于Diffie-Hellman密钥交换协议，其中S(Sender)=旅行社，R(Receiver)=小淘，S拥有两份资料$M_0, M_1$，R想取到$M_0$：
 

@@ -4,7 +4,7 @@ layout: post
 date: 2019-07-23 16:53
 image: /assets/images/
 headerImage: false
-category: blog
+category: Book Reading
 tag:
 - machine learning
 - questions
@@ -19,6 +19,8 @@ A1: 采样本质是对随机现象的模拟，即根据给定的概率分布，�
 ​	采样也可以看作是一种非参数模型，即用较少量的样本点来近似总体分布，并刻画分布中的不确定性。这个角度考虑，也可以当作一种信息降维。
 
 ​	常见的如自助法和刀切法(Jack knife)，通过对样本的多次重采样来估计统计量的偏差、方差等信息。重采样来处理分类模型的训练样本不均衡问题。
+
+<!--more-->
 
 ​	此外，很多模型由于结构复杂、含有隐变量等原因，没有显示的解析解，可以利用采样方法进行随机模拟，对复杂模型进行近似求解或推理。例如，在隐狄利克雷模型和深度玻尔兹曼机(Deep Boltzmann Machines, DBM)的求解过程中，可以采用**吉布斯采样**来简化求解过程。
 

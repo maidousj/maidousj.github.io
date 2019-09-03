@@ -4,7 +4,7 @@ layout: post
 date: 2019-08-21 16:16
 image: /assets/images/
 headerImage: false
-category: blog
+category: Blog
 tag:
 - DP
 - Logistic Regression
@@ -20,7 +20,7 @@ author: Sun
 >
 > 我们期望得到一类在差分隐私框架下的机器学习模型A，使得原先的机器学习模型具有隐私保护能力。具体而言，即一类经验误差最小化模型，再具体而言...一类线性核的经验误差最小化模型(Logistic Regression/SVM/Least squares...)
 
-
+<!--more-->
 
 大神Kamalika Chaudhuri这一系列的开坑之作，发表在nips2008和jmlr2011上。主要思路就是Output Perturbation和Objective Perturbation。
 

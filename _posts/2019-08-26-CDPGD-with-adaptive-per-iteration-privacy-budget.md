@@ -4,7 +4,7 @@ layout: post
 date: 2019-08-26 20:49
 image: /assets/images/
 headerImage: false
-category: blog
+category: Paper Reading
 tag:
 - DP
 - Gradient Descent
@@ -21,6 +21,8 @@ Lee J, Kifer D. Concentrated differentially private gradient descent with adapti
 这篇文章思路很巧妙，当时我也觉得在梯度上加入随机噪声，梯度方向一定会变来变去，加上之前做GBDT的那个实验，也有很不靠谱的时候，怎么就没有再往下想一下通过某些方法来保证梯度一定可以有效下降呢。。
 
 传统的DP-SGD类算法有两个缺点：一是需要预先给出迭代次数T，如果T太小，可能算法还没有收敛到最优，如果T太大，那么每次迭代需要的$\epsilon_t$就会小，每次计算梯度引入到噪声量就会大，可能结果也不好；第二个是通常在优化的最开始，梯度是比较大的，这时少量噪声对梯度的影响就比较小，但随着迭代的进行梯度减小时，如果还是采用同样的噪声量，则对梯度的影响就会变大，可能影响收敛。
+
+<!--more-->
 
 本文的方法就是在第t步时，计算noisy gradient $\tilde{S}\_{t}=\nabla f\left(\mathbf{w}\_{t}\right)+Y\_{t}$；然后用剩下的隐私预算来选择t步时最优的step size。具体地，需要预先定义step size的集合$\Phi$（包括0），用differentially private noisy min algorithm[1]来近似地找到使$f\left(\mathbf{w}\_{t}-\alpha \tilde{S}\_{t}\right)$最小的$\alpha$，we find which step size causes the biggest decrease on the objective function。如果$\alpha$不为0，则$\mathbf{w}\_{t+1}=\mathbf{w}\_{t}-\alpha \tilde{S}_{t}$，通过不同的$\alpha$保证算法收敛更快；如果$\alpha$为0，则表明noise太大，会在接下来的迭代中增加privacy budget的分配，来减小noise。
 

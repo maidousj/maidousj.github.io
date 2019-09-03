@@ -2,7 +2,7 @@
 title: SecureML 阅读
 layout: post
 date: 2019-06-16
-category: blog
+category: Paper Reading
 tag:
 - PPML 
 - Oblivious Transfer
@@ -20,6 +20,8 @@ Mohassel P, Zhang Y. Secureml: A system for scalable privacy-preserving machine 
 在两个不会合作的server模型上实现的协议。
 
 >  Our protocols fall in the two-server model where data owners distribute their private data among two non-colluding servers who train various models on the joint data using secure two-party computation. We develop new techniques to support secure arithmetic operations on shared decimal numbers, and propose MPC-friendly alternatives to non-linear functions such as sigmoid and softmax that are superior to prior work.
+
+<!--more-->
 
 #### Introduction
 1. 本文聚焦于two server model。将MPC缩减到了2PC，极大的提高了效率。

@@ -4,7 +4,7 @@ layout: post
 date: 2019-06-21 10:30
 image: /assets/images/
 headerImage: false
-category: blog
+category: Blog
 tag:
 - FTRL
 - TG
@@ -18,6 +18,8 @@ author: Sun
 > 之前主要关注FTRL，没有仔细的看过FTRL之前的文章，这里简单记一下，以后翻出来看也方便。
 
 FTRL是Google从2010到2013护的坑，从理论到工程实现，对处理如Logistic Regression之类的带非光滑正则项的凸优化问题上性能出色(L1范数，控制模型复杂度和稀疏化)。
+
+<!--more-->
 
 #### 问题描述（最小化目标函数）
 

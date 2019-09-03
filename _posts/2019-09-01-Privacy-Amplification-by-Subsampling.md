@@ -1,10 +1,10 @@
 ---
-title: Privacy Amplification by Subsampling: Tight Analyses via Couplings and Divergences notes
+title: Privacy Amplification by Subsampling Tight Analyses via Couplings and Divergences notes
 layout: post
 date: 2019-09-01 14:03
 image: /assets/images/
 headerImage: false
-category: blog
+category: Paper Reading
 tag:
 - DP
 - Privacy Amplification
@@ -17,6 +17,7 @@ Balle B, Barthe G, Gaboardi M. Privacy amplification by subsampling: Tight analy
 
 提出了一种通用的框架，适用于任何subsampling策略的方案，提供tight privacy amplification results。基于$\alpha$-divergences[1]来推导bound，之前都是用在program verification上的，这是第一次用在算法分析的场景里。为此提出了两种分析工具，*advanced joint convexity*---关于混合分布的$\alpha$-divergences属性，和*privacy profile*---描述算法可以提供的privacy guarantees。
 
+<!--more-->
 #### Background
 
 ![](/assets/images/2019-09-01-privacy-amplification/image-20190902103116396.png)

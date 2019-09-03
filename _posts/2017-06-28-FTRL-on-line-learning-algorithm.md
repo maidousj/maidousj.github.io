@@ -4,7 +4,7 @@ layout: post
 date: 2017-06-28 22:56
 image: /assets/images/slamdunk.jpg
 headerImage: true
-category: blog
+category: Blog
 tag:
 - FTL
 - FTRL
@@ -16,6 +16,8 @@ author: Sun
 
 两种在线学习算法，一种是Online Bayesian Learning，另一种是FTRL(Follow The Regularized Leader)。
 提到FTRL就要先了解FTL，FTL的思想是**每次找到让之前所有损失函数之和最小的参数**。 
+
+<!--more-->
 
 #### FTL
 

@@ -4,7 +4,7 @@ layout: post
 date: 2019-08-29 14:29
 image: /assets/images/
 headerImage: false
-category: blog
+category: Paper Reading
 tag:
 - DP
 - Gaussian Mechanism
@@ -15,11 +15,13 @@ author: Sun
 
 > The first improvement is an algorithmic noise calibration strategy that uses numerical evaluations of the Gaussian cumulative density function (CDF) to obtain the optimal variance to achieve DP using Gaussian perturbation. 
 
+<!--more-->
+
 用CDF来得到更优的方差 
 
 > The second improvement equips the Gaussian perturbation mechanism with a post-processing step which denoises the output using adaptive estimation techniques from the statistics literature. 
 
-用后处理的步骤，用适应性估计技术对output降噪 
+用后处理的步骤，用适应性估计技术对output降噪。
 
 存在的问题： 
 

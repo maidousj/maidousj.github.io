@@ -4,7 +4,7 @@ layout: post
 date: 2019-06-24 15:15
 image: /assets/images/
 headerImage: false
-category: blog
+category: Blog
 tag:
 - Garbled-Circuits-notes
 - Garbled Circuits
@@ -19,7 +19,9 @@ Yao大佬在1986年提出的。可以叫多方安全计算的基石。
 
 ![image-20190624152427500](/assets/images/gc-gate.png){:width="400"}
 
-以AND function（与门）为例，实际上可以看成是一张真值表，如图左所示，两个输入同为1时，输出才为1；否则输出为0。
+以AND function（与门）为例，实际上可以看成是一张真值表，如上图所示，两个输入同为1时，输出才为1；否则输出为0。
+
+<!--more-->
 
 **目标是用一种加密方式，可以达到不知道输入(a,b)并且不知道输出(c)的情况下，仍然可以计算这个门电路，并且把输出作为下一个门电路的输入。**
 

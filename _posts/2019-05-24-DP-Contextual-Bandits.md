@@ -1,8 +1,8 @@
 ---
-title: Differentially Private Contextual Linear Bandits 阅读
+title: Differentially Private Contextual Linear Bandits notes
 layout: post
 date: 2019-05-24
-category: blog
+category: Paper Reading
 tag:
 - DP
 - Bandits 
@@ -22,6 +22,8 @@ Shariff R, Sheffet O. Differentially Private Contextual Linear Bandits[C]//Advan
 用标准的DP可以得到线性的regret bound。因此采用了联合DP(joint differential privacy)，假设第t天选择的action只有用户t知道，所以不需要在当天进行保护，只需要保护接下来的日子。
 
 用基于树的算法将linUCB算法转化为符合JDP的算法。加入了高斯噪声或者Wishart噪声。
+
+<!--more-->
 
 #### Introduction
 > In this work, we give upper and lower bounds for the problem of (joint) differentially private contextual linear bandits.

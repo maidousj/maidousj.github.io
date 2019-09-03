@@ -4,7 +4,7 @@ layout: post
 date: 2019-08-15 14:16
 image: /assets/images/
 headerImage: false
-category: blog
+category: Paper Reading
 tag:
 - DP
 - Thompson Sampling
@@ -16,6 +16,8 @@ author: Sun
 > Tossou A C Y, Dimitrakakis C. On The Differential Privacy of Thompson Sampling With Gaussian Prior[J]. arXiv preprint arXiv:1806.09192, 2018.
 
 主要结论是说基于高斯先验的TS算法 ([1]中的算法2) 已经是满足DP的。
+
+<!--more-->
 
 ![image-20190815142143457](/assets/images/2019-08-15-DP-Thompson-Sampling/image-20190815142143457.png){:width="400"}
 

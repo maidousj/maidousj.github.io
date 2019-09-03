@@ -4,7 +4,7 @@ layout: post
 date: 2019-08-24 15:18
 image: /assets/images/
 headerImage: false
-category: blog
+category: Blog
 tag:
 - DP
 - Logistic Regression
@@ -13,6 +13,8 @@ author: Sun
 ---
 
 DP-SGD主要是利用了差分隐私对梯度下降过程进行扰动，以达到学习出一个满足差分隐私的模型：Song S, Chaudhuri K, Sarwate A D. Stochastic gradient descent with differentially private updates[C]//2013 IEEE Global Conference on Signal and Information Processing. IEEE, 2013: 245-248.
+
+<!--more-->
 
 #### Stochastic Gradient Descent
 

@@ -4,7 +4,7 @@ layout: post
 date: 2019-08-15 16:46
 image: /assets/images/
 headerImage: false
-category: blog
+category: Paper Reading
 tag:
 - DP
 - Multi-armed Bandit
@@ -18,6 +18,8 @@ author: Sun
 UAI 2015的文章，主要是针对UCB算法和TS算法进行了隐私保护，声称达到了接近于non-private版本算法的效果(较低的regret)。
 
 在motivation中提到了**practical**的一点，是说在广告点击中，可以获得点击广告的反馈，而未点击的候选广告则没有任何反馈，而bandit learning的方式正适用于这一点，且有良好的理论保证。（这就很practical了？）
+
+<!--more-->
 
 #### Tree based aggregation
 
