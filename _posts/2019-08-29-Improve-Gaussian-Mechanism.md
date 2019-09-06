@@ -1,15 +1,14 @@
----
-title: Improve Gaussian Mechanism notes
+title: Improving the Gaussian Mechanism notes
 layout: post
 date: 2019-08-29 14:29
 image: /assets/images/
 headerImage: false
 category: Paper Reading
 tag:
+
 - DP
 - Gaussian Mechanism
 author: Sun
----
 
 Balle B, Wang Y X. Improving the gaussian mechanism for differential privacy: Analytical calibration and optimal denoising[J]. arXiv preprint arXiv:1805.06530, 2018.
 
@@ -25,27 +24,45 @@ Balle B, Wang Y X. Improving the gaussian mechanism for differential privacy: An
 
 第二种用后处理的步骤，用统计学上的适应性估计技术对output降噪。
 
-存在的问题： 
+#### 经典高斯机制的限制
 
-1. 经典高斯机制：$Z\sim N(0, \sigma^2)$, For any $\epsilon, \delta \in (0,1), \sigma = \Delta\sqrt{2\log(1.25/\delta)}/\epsilon$, 可以保证$(\epsilon,\delta)$-DP 
+经典高斯机制：$Z\sim N(0, \sigma^2)$, For any $\epsilon, \delta \in (0,1), \sigma = \Delta\sqrt{2\log(1.25/\delta)}/\epsilon$, 可以保证$(\epsilon,\delta)$-DP 
 
-   很自然的两个疑问是：
+很自然的两个疑问是：
 
-   a. 该$\sigma$取值在满足DP的前提下，是否保证是最小的噪声量 
+a. 该$\sigma$取值在满足DP的前提下，是否保证是最小的噪声量 
 
-   b. 当$\epsilon \ge 1$会发生什么。 
+b. 当$\epsilon \ge 1$会发生什么。 
 
-   这篇文章指出当$\epsilon \rightarrow 0$ (high privacy regime)，$\sigma$是次优的。 
+这篇文章指出当$\epsilon \rightarrow 0$ (high privacy regime)，$\sigma$是次优的。 
 
-   而当$\varepsilon >1$时，
+而当$\varepsilon >1$时，
 
-   > large values of $\varepsilon$ the standard deviation of a Gaussian perturbation that provides $(\varepsilon, \delta)$-DP must scale like $\Omega(1/\sqrt{\varepsilon})$. 
+> large values of $\varepsilon$ the standard deviation of a Gaussian perturbation that provides $(\varepsilon, \delta)$-DP must scale like $\Omega(1/\sqrt{\varepsilon})$. 
 
-2. ![](/Users/sunjie/Documents/workspace/maidousj.github.io/assets/images/2019-08-29-Improved-Gaussian/image-20190906135254057.png){:width="400"}
+1. Limitations in the High Privacy Regime
+
+   ![](/assets/images/2019-08-29-Improved-Gaussian/image-20190906135254057.png){:width="400"}
 
    接下来会解释为什么经典高斯机制不能导出$\varepsilon \to 0$时的tight bounds，这也会说明定理2不是一个极端的例子，而是a fundamental limitation of trying to establish $(\varepsilon,\delta)$-DP through said sufficient condition.
 
-3. Limitations of Privacy Loss Analyses 
+2. Limitations of Privacy Loss Analyses 
+
+   加一个服从高斯分布的噪声时，隐私损失也是服从高斯分布的[1]：
+
+   ![](/assets/images/2019-08-29-Improved-Gaussian/image-20190906164622596.png)
+
+   经典高斯机制的隐私分析需要以下条件：
+
+   a mechanism M is $(\varepsilon,\delta)$-DP if the privacy loss $L_{M,x,x'}$ satisfies
+
+   $$\forall x\simeq x': \mathbb{P}[L_{M,x,x' \ge \varepsilon}\leq \delta]$$
+
+   引理3表明高斯机制的privacy loss也是一个高斯随机变量，对任何一对使得$f(x)\ne f(x')$数据集，有$\mathbb{P}[L_{M,x,x'}>0]\ge 1/2$。这一点说明通常不可能用满足$(\varepsilon,\delta)$-DP的充分条件去证明高斯机制可以在任何$\delta<1/2$的情况下达到$(0,\delta)$-DP。也就是说，充分条件对于$\varepsilon \to 0$是不必要的。
+
+3. Limitations in the Low Privacy Regime
+
+   ![](/assets/images/2019-08-29-Improved-Gaussian/image-20190906175109564.png)
 
    
 
@@ -59,7 +76,9 @@ Balle B, Wang Y X. Improving the gaussian mechanism for differential privacy: An
 
 
 
+#### Reference
 
+[1] Dwork, C. and Rothblum, G. N. Concentrated differential privacy. arXiv preprint arXiv:1603.01887, 2016.
 
 
 
