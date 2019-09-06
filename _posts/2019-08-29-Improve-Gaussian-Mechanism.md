@@ -1,5 +1,5 @@
 ---
-title: Improve-Gaussian-Mechanism
+title: Improve Gaussian Mechanism notes
 layout: post
 date: 2019-08-29 14:29
 image: /assets/images/
@@ -11,17 +11,19 @@ tag:
 author: Sun
 ---
 
-提出了两种方法让bound更紧 
+Balle B, Wang Y X. Improving the gaussian mechanism for differential privacy: Analytical calibration and optimal denoising[J]. arXiv preprint arXiv:1805.06530, 2018.
 
-> The first improvement is an algorithmic noise calibration strategy that uses numerical evaluations of the Gaussian cumulative density function (CDF) to obtain the optimal variance to achieve DP using Gaussian perturbation. 
+提出了两种方法让bound更紧：
+
+> The first improvement is **an algorithmic noise calibration strategy** that uses numerical evaluations of the Gaussian cumulative density function (CDF) to obtain the optimal variance to achieve DP using Gaussian perturbation. 
+
+第一种是通过高斯的CDF来直接调整方差，以得到更优的高斯机制。
 
 <!--more-->
 
-用CDF来得到更优的方差 
-
 > The second improvement equips the Gaussian perturbation mechanism with a post-processing step which denoises the output using adaptive estimation techniques from the statistics literature. 
 
-用后处理的步骤，用适应性估计技术对output降噪。
+第二种用后处理的步骤，用统计学上的适应性估计技术对output降噪。
 
 存在的问题： 
 
@@ -35,6 +37,29 @@ author: Sun
 
    这篇文章指出当$\epsilon \rightarrow 0$ (high privacy regime)，$\sigma$是次优的。 
 
-   large values of ε the standard deviation of a Gaussian perturbation that provides (ε, δ)-DP must scale like Ω(1/√ε). 
+   而当$\varepsilon >1$时，
 
-2. Limitations of Privacy Loss Analyses 
+   > large values of $\varepsilon$ the standard deviation of a Gaussian perturbation that provides $(\varepsilon, \delta)$-DP must scale like $\Omega(1/\sqrt{\varepsilon})$. 
+
+2. ![](/Users/sunjie/Documents/workspace/maidousj.github.io/assets/images/2019-08-29-Improved-Gaussian/image-20190906135254057.png){:width="400"}
+
+   接下来会解释为什么经典高斯机制不能导出$\varepsilon \to 0$时的tight bounds，这也会说明定理2不是一个极端的例子，而是a fundamental limitation of trying to establish $(\varepsilon,\delta)$-DP through said sufficient condition.
+
+3. Limitations of Privacy Loss Analyses 
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

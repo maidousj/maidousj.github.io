@@ -12,7 +12,7 @@ print opts, args
 title=""
 image=""
 tag=""
-category="blog"
+category="Blog"
 displayImage = 'false'
 
 for op, value in opts:
