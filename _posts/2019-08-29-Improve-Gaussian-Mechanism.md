@@ -64,7 +64,7 @@ b. 当$\epsilon \ge 1$会发生什么。
 
    ![](/assets/images/2019-08-29-Improved-Gaussian/image-20190906175109564.png)
 
-   
+   当$\varepsilon \to \infty$时，$\delta$会收敛到1/2.
 
 
 
