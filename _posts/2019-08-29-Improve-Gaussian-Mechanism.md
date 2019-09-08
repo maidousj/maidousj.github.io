@@ -1,3 +1,4 @@
+---
 title: Improving the Gaussian Mechanism notes
 layout: post
 date: 2019-08-29 14:29
@@ -5,10 +6,10 @@ image: /assets/images/
 headerImage: false
 category: Paper Reading
 tag:
-
 - DP
 - Gaussian Mechanism
 author: Sun
+---
 
 Balle B, Wang Y X. Improving the gaussian mechanism for differential privacy: Analytical calibration and optimal denoising[J]. arXiv preprint arXiv:1805.06530, 2018.
 
@@ -50,7 +51,7 @@ b. 当$\epsilon \ge 1$会发生什么。
 
    加一个服从高斯分布的噪声时，隐私损失也是服从高斯分布的[1]：
 
-   ![](/assets/images/2019-08-29-Improved-Gaussian/image-20190906164622596.png)
+   ![](/assets/images/2019-08-29-Improved-Gaussian/image-20190906164622596.png){:width="400"}
 
    经典高斯机制的隐私分析需要以下条件：
 
@@ -62,9 +63,15 @@ b. 当$\epsilon \ge 1$会发生什么。
 
 3. Limitations in the Low Privacy Regime
 
-   ![](/assets/images/2019-08-29-Improved-Gaussian/image-20190906175109564.png)
+   ![](/assets/images/2019-08-29-Improved-Gaussian/image-20190906175109564.png){:width="400"}
 
    当$\varepsilon \to \infty$时，$\delta$会收敛到1/2.
+
+#### The Analytic Gausssian Mechanism
+
+> To do so we must address the two sources of slack in the classical analysis: the sufficient condition (2) used to reduce the analysis to finding an upper bound for $P[N(\eta, 2\eta) > \varepsilon]$, and the use of a Gaussian tail approximation to obtain such upper bound.
+
+看不懂了。看不下去了。有需要的时候再补吧。
 
 
 
