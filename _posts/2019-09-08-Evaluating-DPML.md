@@ -23,6 +23,56 @@ Jayaraman B, Evans D. Evaluating Differentially Private Machine Learning in Prac
 
 本文发现“可以保证的隐私损失的上界(即使是高级机制)”和“可以被inference attack衡量的有效的隐私损失”存在一个巨大的鸿沟。现有的DPML方法很少为复杂的学习任务提供可接受的utility-privacy trade-offs。
 
+#### Introduction
+
+[1] 中的$\varepsilon$达到了百万级，对于隐私保护毫无意义。
+
+对于给定的隐私预算，提高utility的一种途径是tighten the composition of DP。[2,3,4]通过提供tighter analysis of the privacy budget under composition，在添加同样噪声量的情况下，可以达到更好的privacy(更小的$\varepsilon$)，因此可以在给定$\varepsilon$的情况下获得更好的utility。但是在adversarial场景下，泄漏了多少privacy呢？因此本文评估了不同DP变体不同隐私预算下的隐私泄露情况，包括在membership inference attacks下会有多少条个体训练数据被泄露。
+
+#### Related works
+
+[5,6]对现有的DP实现进行了*correctness*的评估。[7]提供了*effectiveness* of DP against attacks，但是没有明确回答$\varepsilon$应该用多少，也没有提供privacy leakage的评估。[8]考虑了放松DP notion的方式来取得更好的utility，但是也没有评估leakage。[9]是最接近本文的，评估了DP implementations against membership inference attacks，但是也没有评估不同DP变体的privacy leakage。[10]reported on extensive hypothesis testing differentially private machine learning using the Neyman-Pearson criterion, 给出了基于敌手先验知识的privacy budget设置的指导。
+
+
+
+
+
+
+
+
+
+
+
+#### Conclusion
+
+通常使用的$\varepsilon$ values的组合和各种DP的变体，并不能提供很好的utility-privacy trade-offs。What the state-of-the-art inference attacks can infer和DP可以提供的保证之间还存在巨大的差距。
+
+直白一点就是，较好的utility下，任何DP变体提供的隐私保证基本上是无意义的，尽管通过attack观察到的泄露也是相对较低的（为什么这么说，泄露低了不就是良好的保证么？？）。
+
+> Research is needed to understand the limitations of inference attacks, and eventually to develop solutions that provide desirable, and well understood, utility-privacy trade-offs.
+
+#### Reference
+
+[1] Reza Shokri and Vitaly Shmatikov. Privacy-preserving deep learning. In ACM Conference on Computer and Communications Security, 2015.
+
+[2] Mark Bun and Thomas Steinke. Concentrated differential privacy: Simplifications, extensions, and lower bounds. In Theory ofCryptography Conference, 2016.
+
+[3] Cynthia Dwork and Guy N. Rothblum. Concentrated differential privacy. arXiv:1603.01887, 2016.
+
+[4] Ilya Mironov. Rényi differential privacy. In IEEE Computer Security Foundations Symposium, 2017.
+
+[5] Zeyu Ding, Yuxin Wang, Guanhong Wang, Danfeng Zhang, and Daniel Kifer. Detecting violations of differential privacy. In ACM Conference on Computer and Communications Security, 2018.
+
+[6] Michael Hay, Ashwin Machanavajjhala, Gerome Miklau, Yan Chen, and Dan Zhang. Principled evaluation of differentially private algorithms using DPBench. In ACM SIGMOD Conference on Management of Data, 2016.
+
+[7] Nicholas Carlini, Chang Liu, Jernej Kos, Úlfar Erlingsson, and Dawn Song. The Secret Sharer: Evaluating and testing unintended memorization in neural networks. In USENIX Security Symposium, 2019.
+
+[8] Ninghui Li,Wahbeh Qardaji, Dong Su,Yi Wu, andWein- ing Yang. Membership privacy: A unifying framework for privacy definitions. In ACM Conference on Computer and Communications Security, 2013.
+
+[9] Md Atiqur Rahman, Tanzila Rahman, Robert Laganière, Noman Mohammed, and Yang Wang. Membership inference attack against differentially private deep learning model. Transactions on Data Privacy, 2018.
+
+[10] Changchang Liu, Xi He, Thee Chanyaswad, Shiqiang Wang, and Prateek Mittal. Investigating statistical privacy frameworks from the perspective of hypothesis testing. Proceedings on Privacy Enhancing Technolo- gies, 2019.
+
 
 
 
