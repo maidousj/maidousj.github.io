@@ -53,19 +53,19 @@ Dwork把这个定义为*advanced composition theorem*，并且证明它可以用
 
 [12]指出DP机制的privacy loss服从sub-Gaussian分布。也就是说，privacy loss被严格分布在privacy loss的期望(均值)周围，the spread通过sub-Gaussian分布的方差来控制。多个DP机制的组合可以通过组合单个sub-Gaussian分布的均值和方差来实现。这可以被转化为类似于advanced composition theorem的privacy budget累积，从而减少每个机制需要的噪声量。这就是CDP：
 
-![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910111517842.png){width="400"}
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910111517842.png){:width="400"}
 
-![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910111720032.png){width="400"}
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910111720032.png){:width="400"}
 
-![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910112041919.png){width="400"}
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910112041919.png){:width="400"}
 
-![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910114333752.png){width="400"}
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910114333752.png){:width="400"}
 
 **Moments Accountant.** MA追踪组合过程中privacy loss的矩的bound，可以看作是RDP的一个实例。
 
 ##### DP Methods for ML
 
-![image-20190910115132399](/Users/sunjie/Documents/workspace/maidousj.github.io/assets/images/2019-09-08-Evaluating-DPML/image-20190910115132399.png)
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910115132399.png){:width="400"}
 
 三种典型的privacy机制，本文关注gradient perturbation，每次迭代需要noise in the scale of $\frac{2}{n\varepsilon}$。
 
@@ -81,9 +81,9 @@ Dwork把这个定义为*advanced composition theorem*，并且证明它可以用
 
 后来提出的方法，包括针对高维数据[17(JT13), 18(JT14), 19]，不需要强凸假设的[20]，relax the assumptions on data and objective functions[21,22,23]。这些都是理论的，除了[17,18]给出了实现。
 
-![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910143636512.png)
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910143636512.png){:width="400"}
 
-![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910163054751.png)
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190910163054751.png){:width="400"}
 
 **Complex learning tasks.** 
 
@@ -147,9 +147,9 @@ $$TPR-FPR$$
 
 0表示没有leakage。（不是很理解）
 
-![](/assets/images/2019-09-08-Evaluating-DPML/image-20190911173637031.png){width="400"}
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190911173637031.png){:width="400"}
 
-![](/assets/images/2019-09-08-Evaluating-DPML/image-20190911173800053.png){width="400"}
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190911173800053.png){:width="400"}
 
 实验待补，饿了，觅食去。
 
