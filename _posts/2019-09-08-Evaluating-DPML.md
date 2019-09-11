@@ -129,17 +129,29 @@ Dwork把这个定义为*advanced composition theorem*，并且证明它可以用
 
 #### Evaluation
 
-做实验来测量敌手可以从模型中推断出多少。得出的结论仅限于information leakage的下限。
+做实验来测量敌手可以从模型中推断出多少。membership attack得出的结论仅限于information leakage的下限。DP提供了leakage的上限。结论是implemented privacy protections do not appear to provide sufficient privacy. 
 
+##### Setup
 
+不同的变体：naive composition(NC), advanced composition (AC), zero-concentrated differential privacy (zCDP) and Rényi differential privacy (RDP).
 
+**Accuracy loss:**
 
+$$Accuracy Loss=1-\frac{Accuracy\ of\ Private\ Model}{Accuracy\ of\ Non-Private\ Model}$$
 
+**Privacy Leakage:** 
 
+$$TPR-FPR$$
 
+(本身为正，被预测为正的概率 - 本身为负，被预测为正的概率) TPR = TP /（TP + FN）FPR = FP /（FP + TN）
 
+0表示没有leakage。（不是很理解）
 
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190911173637031.png){width="400"}
 
+![](/assets/images/2019-09-08-Evaluating-DPML/image-20190911173800053.png){width="400"}
+
+实验待补，饿了，觅食去。
 
 
 
