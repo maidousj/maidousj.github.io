@@ -119,7 +119,17 @@ Dwork把这个定义为*advanced composition theorem*，并且证明它可以用
 
 [29] Nick Hynes, Raymond Cheng, and Dawn Song. Efficient deep learning on multi-source private data. arXiv:1807.06689, 2018.
 
+#### Inference Attacks on ML
 
+##### Membership Inference
+
+目的是为了推断给定的一个记录是否在训练集中。[25]首次提出了这种攻击，黑盒模型。出发点是机器学习模型在其训练数据和初次遇见的数据上的表现往往不同，可据此推断某条数据是否在其训练数据集中。据此想训练一个attack model来对输入进行推断，给出某个输入是否存在与训练集的置信分数。但是由于不知道训练数据集，所以提出了shadow model，用来生成训练集。[26]提出了白盒模型的攻击，可以进入目标模型，且指导模型的training loss的均值，如果输入数据通过计算后，loss小于模型的loss均值，那么就认为它存在于训练集中。
+
+**Connection to DP.** 直观上看，DP和membership attack是一对矛盾。*membership advantage*定义为敌手的true and false positive rates的区别，[26]给出了二者的联系：如果一个算法满足$\varepsilon$-DP，那么敌手的advantage is bounded by $e^{\varepsilon}-1$。
+
+#### Evaluation
+
+做实验来测量敌手可以从模型中推断出多少。得出的结论仅限于information leakage的下限。
 
 
 
@@ -190,6 +200,10 @@ Dwork把这个定义为*advanced composition theorem*，并且证明它可以用
 [23] Jiaqi Zhang, Kai Zheng,Wenlong Mou, and Liwei Wang. Efficient private ERM for smooth objectives. In International Joint Conference on Artificial Intelligence, 2017.
 
 [24] Prateek Jain, Pravesh Kothari, and Abhradeep Thakurta. Differentially private online learning. In Annual Conference on Learning Theory, 2012.
+
+[25] Reza Shokri, Marco Stronati, Congzheng Song, and Vitaly Shmatikov. Membership inference attacks against machine learning models. In IEEE Symposium on Security and Privacy, 2017.
+
+[26] Samuel Yeom, Irene Giacomelli, Matt Fredrikson, and Somesh Jha. Privacy risk in machine learning: Analyzing the connection to overfitting. In IEEE Computer Security Foundations Symposium, 2018
 
 
 
