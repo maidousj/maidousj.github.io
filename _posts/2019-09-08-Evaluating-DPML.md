@@ -145,7 +145,7 @@ $$TPR-FPR$$
 
 (本身为正，被预测为正的概率 - 本身为负，被预测为正的概率) TPR = TP /（TP + FN）FPR = FP /（FP + TN）
 
-0表示没有leakage。（不是很理解）
+0表示没有leakage。（不是很理解??）
 
 ![](/assets/images/2019-09-08-Evaluating-DPML/image-20190911173637031.png){:width="400"}
 
