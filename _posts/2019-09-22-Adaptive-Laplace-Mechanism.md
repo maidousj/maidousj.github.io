@@ -31,7 +31,17 @@ Phan N H, Wu X, Hu H, et al. Adaptive laplace mechanism: Differential privacy pr
 
 至此，每一个计算任务中需要读取原始数据集D的部分都得到了隐私保护。噪声只在预处理阶段计算相关性、第一层、和损失函数加一次，后续训练过程中不再消耗隐私预算，因此，**不依赖于训练轮数**。
 
+**Perturbation of the Loss Function**
 
+首先，基于泰勒展开，对损失函数取多项式近似；然后在系数上加入Laplace噪声。
+
+![](/assets/images/2019-09-22-Adaptive-Laplace.md/image-20190923201449634.png){:width="400"}
+
+用*functional mechanism*来对系数进行扰动，系数实际上是关于$y_{il}$的函数。
+
+![](/assets/images/2019-09-22-Adaptive-Laplace.md/image-20190923202458011.png)
+
+对每个系数$\phi_{l\mathbb{x}_i}^{(R)}$插入噪声$\frac{1}{\vert L\vert}Lap(\frac{\Delta_F}{\varepsilon_3})$，则满足$\varepsilon_3$-DP。
 
 #### Experiments
 
