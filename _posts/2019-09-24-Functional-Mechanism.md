@@ -93,7 +93,11 @@ $$f(t_i,w) = f_1(g_1(t_i,w))-f_2(g_2(t_i,w))$$.
 
 如图2的例子，如果二次项系数加噪声后变为负的，就没有了最小的解。一种简单的解决办法是一旦出现这种unbounded的情况，就重跑FM算法直到可以求出最优解。这种算法会把隐私预算翻倍，满足$2\varepsilon$-DP。
 
-另外两种方法是正则化和
+另外两种方法是正则化和Spectral Trimming。
+
+#### Spectral Trimming
+
+$\bar{f}_{D}(w)=w^{T}(M^*+\lambda I)w+\alpha^*w+\beta^*$是带正则项的noisy目标函数。$\bar{f}_D(w)$是unbounded的，当且仅当$M^*+\lambda I$不是正定时成立(当且仅当至少有一个特征值是非正的)，也就是说，要避免非正特征值的出现。所以，直接去掉非正特征值即可。
 
 
 
