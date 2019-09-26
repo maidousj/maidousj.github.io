@@ -97,11 +97,7 @@ $$f(t_i,w) = f_1(g_1(t_i,w))-f_2(g_2(t_i,w))$$.
 
 #### Spectral Trimming
 
-$\bar{f}_{D}(w)=w^{T}(M^*+\lambda I)w+\alpha^*w+\beta^*$是带正则项的noisy目标函数。$\bar{f}_D(w)$是unbounded的，当且仅当$M^*+\lambda I$不是正定时成立(当且仅当至少有一个特征值是非正的)，也就是说，要避免非正特征值的出现。所以，直接去掉非正特征值即可。
-
-
-
-
+$\bar{f}_{D}(w)=w^{T}(M^{\*}+\lambda{I})w+\alpha^{\*}w+\beta^{\*}$ 是带正则项的noisy目标函数。 $\bar{f}_D(w)$是unbounded的，当且仅当$M^{*}+\lambda I$不是正定时成立(当且仅当至少有一个特征值是非正的)，也就是说，要避免非正特征值的出现。所以，直接去掉非正特征值即可。
 
 
 
