@@ -99,6 +99,34 @@ $$f(t_i,w) = f_1(g_1(t_i,w))-f_2(g_2(t_i,w))$$.
 
 $\bar{f}_{D}(w)=w^{T}(M^{\*}+\lambda{I})w+\alpha^{\*}w+\beta^{\*}$ 是带正则项的noisy目标函数。 $\bar{f}_D(w)$是unbounded的，当且仅当$M^{*}+\lambda I$不是正定时成立(当且仅当至少有一个特征值是非正的)，也就是说，要避免非正特征值的出现。所以，直接去掉非正特征值即可。
 
+### Experiments
+
+实验对比了DPME[1], Filter-Priority (FP)[2], NoPrivacy, 和Truncated。
+
+> DPME is the state-of-the-art method for regression analysis under $\varepsilon$-differential privacy, while FP is an $\varepsilon$-differentially private technique for generating synthetic data that can also be used for regression tasks. Truncated returns the parameters obtained from an approximate objective function with truncated polynomial terms.We use two datasets from the Integrated Public Use Microdata Series, US and Brazil, which contain 370, 000 and 190, 000 census records collected in the US and Brazil, respectively.
+
+数据有14个维度，做了5折交叉验证50次，取平均结果。
+
+![](/assets/images/2019-09-24-Functional-Mechanism/image-20190927155512994.png)
+
+![](/assets/images/2019-09-24-Functional-Mechanism/image-20190927161940796.png)
+
+### Conclusion
+
+(效果真的能这么好吗，他这里的这个维度d实际就是数据的属性，不应该是one-hot编码后的实际维度吗？没有代码可参考就是刷流氓！)
+
+### Reference
+
+[1] J. Lei. Differentially private m-estimators. In Proceedings of the 23rd Annual Conference on Neural Information Processing Systems, 2011.
+
+[2] G. Cormode, C. M. Procopiuc, D. Srivastava, and T. T. L. Tran. Differentially private publication of sparse data. In Proceedings ofthe 15th International Conference on Database Theory, 2012.
+
+
+
+
+
+
+
 
 
 
