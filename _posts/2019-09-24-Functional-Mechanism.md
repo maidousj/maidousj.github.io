@@ -85,6 +85,10 @@ $$f(t_i,w) = f_1(g_1(t_i,w))-f_2(g_2(t_i,w))$$.
 
 #### Application to Logistic Regression
 
+![](/assets/images/2019-09-24-Functional-Mechanism/WeChatSight903.png){:width="400"}
+
+将泰勒展开后的损失函数传给算法1，得到保护隐私的模型参数。
+
 ![](/assets/images/2019-09-24-Functional-Mechanism/image-20190924212751445.png){:width="400"}
 
 (这在d变大时候也够喝一壶的啊)

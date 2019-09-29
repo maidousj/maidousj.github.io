@@ -48,7 +48,7 @@ Lee J, Kifer D. Concentrated differentially private gradient descent with adapti
 
 #### Gradient Averaging For zCDP
 
-本文算法很重要的一环就是如何回收利用对更新参数没有用的梯度估计。在第t次迭代中，分配$\rho_t$的隐私预算来扰动梯度，$S_t = \nabla f\left(\mathbf{w}_{t}\right)+N\left(0, \frac{\Delta_{2}(\nabla f)^{2}}{2 \rho_{t}}\right)$。
+本文算法很重要的一环就是如何回收利用对更新参数没有用的梯度估计。在第t次迭代中，分配$\rho_t$的隐私预算来扰动梯度，$S\_t = \nabla f\left(\mathbf{w}\_{t}\right)+N\left(0, \frac{\Delta_{2}(\nabla f)^{2}}{2 \rho_{t}}\right)$。
 
 如果算法认定这个不够准确，就会在下一次迭代时分配隐私预算$\rho_{t+1}>\rho_{t}$。但是对于$S_t$，并不是直接丢弃，而是用$\rho_{t+1}-\rho_{t}$的隐私预算来计算 $S_{t}^{\prime}=\nabla f\left(\mathbf{w}_{t}\right)+N\left(\mathbf{0}, \frac{\Delta_{2}(\nabla f)^{2}}{2\left(\rho_{t+1}-\rho_{t}\right)}\right)$。
 
