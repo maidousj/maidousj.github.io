@@ -52,3 +52,14 @@ author: Sun
          android:required="false" />
    ```
 
+6. Andorid API 28 (android 9.0)后不能加载http的url，报错net : err_cleartext_not_permitted
+
+   在manifest 中application节点添加
+
+   ```xml
+   android:usesCleartextTraffic="true"
+   ```
+
+7. Fragment not attached to a context错误导致通过getResources().getString()获取字符串的错误
+
+   
