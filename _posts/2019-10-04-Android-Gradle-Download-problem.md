@@ -112,11 +112,27 @@ author: Sun
 
 但是！用AS 3.0.1编译同样的代码，依然闪退！还是奇葩的！（当然，大概率原因还是在自己。。好歹新环境可以用了，所以先不管了）
 
-
-
 ### 经验
 
 以后换新的IDE，编译报错，先找版本原因，从gradle版本，API版本等，实在不是版本原因再改代码。。。。
+
+
+
+
+
+-----------------
+
+10.23更新
+
+为了彻底杜绝像锤子手机那种奇葩，决定把countrypicker库的源文件拿来作为子项目添加进去，然后把string.xml中的汉语彻底替换掉（最土的做法。。）
+
+这样为了把countrypicker工程加入到现有的工程中，把countrypicker的代码先拷贝到原工程中。然后countrypicker的build文件中有“api 'io.michaelrocks:libphonenumber-android:8.10.16'”，估计是为了解决手机号格式的库。这玩意报错：
+
+```java
+Could not find method api() for arguments [io.michaelrocks:libphonenumber-android:8.10.16] on object of type org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler.
+```
+
+额。。gradle版本太低的过，以前是2.3.2，换成了3.2.0.
 
 
 
