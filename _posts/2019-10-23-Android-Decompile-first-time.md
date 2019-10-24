@@ -17,6 +17,8 @@ author: Sun
 
    dex2jar直接解压即可
 
+<!--more-->
+
 2. 开始反编译
 
    2.1 apktool对需要反编译的apk文件进行反编译
