@@ -39,7 +39,7 @@ Phan N H, Wu X, Hu H, et al. Adaptive laplace mechanism: Differential privacy pr
 
 用*functional mechanism*来对系数进行扰动，系数实际上是关于$y_{il}$的函数。
 
-![](/assets/images/2019-09-22-Adaptive-Laplace.md/image-20190923202458011.png)
+![](/assets/images/2019-09-22-Adaptive-Laplace.md/image-20190923202458011.png){:width="400"}
 
 对每个系数$\phi_{l\mathbb{x}_i}^{(R)}$插入噪声$\frac{1}{\vert L\vert}Lap(\frac{\Delta_F}{\varepsilon_3})$，则满足$\varepsilon_3$-DP。
 
