@@ -60,13 +60,29 @@ FM可以在稀疏条件下学习出这些interactions(V)是因为它**通过因�
 
 #### FMs vs. SVMs
 
-![](/assets/images/2019-11-04-Factorization-Machine/image-20191104205519440.png){:width="400"}
-
 SVM的多项式核：
 
 ![](/assets/images/2019-11-04-Factorization-Machine/image-20191104205802309.png){:width="400"}
 
-式子9和式子1的相同之处是
+式子9和式子1的相同之处是都构造了特征之间的交叉；主要区别是SVM中每一个交叉的参数$w_{i,j}$是完全独立的，而FM中的参数是通过因式分解得到的，因此$\langle\mathrm{v}_i,\mathrm{v}_j \rangle$和$\langle\mathrm{v}_i,\mathrm{v}_l \rangle$是彼此依赖的，因为都有参数$\mathrm{v}_i$参与了计算。
+
+**线性SVM和多项式SVM对于稀疏数据为何失效：**
+
+以图1的前两栏user和item做协同过滤为例子，这里特征向量是稀疏的，只有两个元素不为0（点乘以后? 能点乘吗 列数不一样啊）。
+
+1. 线性SVM:
+
+   $$\hat{y}(\mathrm{x})=w_0+w_u+w_i$$
+
+   由于线性模型十分简单，参数即使在稀疏情况下也可以估计，但是预测质量很低，如图2所示。
+
+   ![](/assets/images/2019-11-04-Factorization-Machine/image-20191104205519440.png){:width="400"}
+
+2. 多项式SVM:
+
+   $$\hat{y}(\mathrm{x})=w_0+\sqrt{2}(w_u+w_i)+w_{u,u}^{(2)}+w_{i,i}^{(2)}+\sqrt{2}w_{u,i}^{(2)}$$
+
+   首先$w_u$和$w_{u,u}^{(2)}$表达的是一样的，可以去掉其中之一，这样的话多项式SVM只比线性SVM多了一个交叉项$w_{u,i}^{(2)}$。典型的协同过滤问题中，对于每一个交叉参数$w_{u,i}^{(2)}$来说，只有训练数据中的观测值$(u,i)$，测试集中的$(u^\prime,i^\prime)$在训练集中是完全没有观测值的。如之前的例子，A和ST没有交互，所以此时的$w_{A,ST}^{(2)}=0$，这样多项式SVM用2次项交叉并不会对预测结果有任何帮助。
 
 
 
