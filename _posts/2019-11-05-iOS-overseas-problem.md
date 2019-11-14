@@ -148,9 +148,9 @@ ld: symbol(s) not found for architecture arm64
 
    
 
+### Cookie问题
 
+[使用AFNetworking框架遇到的一个经典bug的解决方案](https://www.jianshu.com/p/212a128c9a33)
 
-
-
-
+这个文章帮忙解决了个困扰很久的问题。回头补上。
 
