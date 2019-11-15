@@ -154,3 +154,15 @@ ld: symbol(s) not found for architecture arm64
 
 这个文章帮忙解决了个困扰很久的问题。回头补上。
 
+### 返回键问题
+
+Navigation Item上返回键字符占用区域太大，导致标题不会居中的问题。
+
+[ios去掉导航栏上的返回按钮的文字](https://blog.csdn.net/howlaa/article/details/78953525)   这个可以把返回键字符设为空，但是返回上一级以后，上级视图的标题栏也变成了空，我觉得可以在载入的时候重新加载一下标题栏，但是比较麻烦。
+
+[iOS隐藏系统导航栏左侧返回按钮上的标题](https://blog.csdn.net/xuhen/article/details/77235264)  后来用这个里的方法1搞定的。看起来就是把返回键空间缩到可忽略的小。
+
+### 其他
+
+还有些诸如UILabel，UITextView换行问题、UILabel框线问题等等弱智小问题，就不逐一记载了。
+
