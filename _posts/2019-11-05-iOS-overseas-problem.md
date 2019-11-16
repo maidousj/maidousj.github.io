@@ -162,6 +162,54 @@ Navigation Item上返回键字符占用区域太大，导致标题不会居中�
 
 [iOS隐藏系统导航栏左侧返回按钮上的标题](https://blog.csdn.net/xuhen/article/details/77235264)  后来用这个里的方法1搞定的。看起来就是把返回键空间缩到可忽略的小。
 
+### 判断手机号是否有效过程中遇到的问题
+
+问题1: `ld: library not found for -lstdc++.6.0.9`
+
+为了使用判定手机号是否有效的一个库(https://github.com/iziz/libPhoneNumber-iOS)，选择了通过Pod来管理的方式，第一次使用时直接安装pod，然后执行
+
+```shell
+pod init
+```
+
+修改生成的Podfile文件，载入
+
+```shell
+pod 'libPhoneNumber-iOS', '~> 0.8'
+```
+
+我把文件中其余的都注释掉了，在相应的工程下加入了这行，接下来
+
+```
+pod install
+```
+
+然后重新编译时遇到了这个找不到lstdc++.6.0.9的错误，用这篇文章(https://www.jianshu.com/p/106d523058f4)的方法解决的。
+
+在复制的过程中，发现自己的xcode10的/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/ 目录下是有这个文件的，不知道是不是因为刚才编译没有选择真机（蓝牙相关项目，以前一直是真机调试）。总之解决了这个问题。
+
+问题2: `ld: symbol(s) not found for architecture arm64`
+
+对是的，这个令人头大的问题又出现了，对于菜鸡新手来说真是心惊胆颤。
+
+这次搜索时加入了“引入第三方库”的关键字。有的文章让查看“LIBRARY_SEARCH_PATHS”是否会搜索你引入的库所在路径，于是想起在pod install完以后，弹出的warning，是这么说的
+
+```shell
+The `XXX [Debug]` target overrides the `LIBRARY_SEARCH_PATHS` build setting defined in `Pods/Target Support Files/Pods-XXX/Pods-XXX.debug.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+
+[!] The `XXX [Debug]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods-XXX/Pods-XXX.debug.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+```
+
+同样的提示针对XXX[Release]还有一次。
+
+开始看到以为是它直接覆盖了，所以就没在意。于是在target的build setting中搜索“LIBRARY_SEARCH_PATHS”和“OTHER_LDFLAGS”，加入了`$(inherited)`以后，编译通过了。
+
+
+
 ### 其他
 
 还有些诸如UILabel，UITextView换行问题、UILabel框线问题等等弱智小问题，就不逐一记载了。
