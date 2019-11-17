@@ -208,6 +208,26 @@ The `XXX [Debug]` target overrides the `LIBRARY_SEARCH_PATHS` build setting defi
 
 开始看到以为是它直接覆盖了，所以就没在意。于是在target的build setting中搜索“LIBRARY_SEARCH_PATHS”和“OTHER_LDFLAGS”，加入了`$(inherited)`以后，编译通过了。
 
+### 打包给用户测试
+
+打包Ad hoc版本，应该是用来测试的吧。
+
+登录苹果开发者网站，找到证书管理界面，添加证书：
+
+![](/assets/images/2019-11-05-iOS-overseas-problem/image-20191117143331522.png){:width="400"}
+
+![](/assets/images/2019-11-05-iOS-overseas-problem/image-20191117143557477.png)
+
+![](/assets/images/2019-11-05-iOS-overseas-problem/image-20191117143113897.png){:width="400"}
+
+创建好后，上传到开发者网站
+
+![](/assets/images/2019-11-05-iOS-overseas-problem/image-20191117144056608.png){:width="400"}
+
+然后下一步，然后download下一个cer文件。
+
+参考[使用Ad Hoc 打包进行用户测试](https://www.jianshu.com/p/e5b7bdcc93c9)。后边第二三步操作类似。第四步制作profile文件时，看起来还得添加相关的uuid才行。
+
 
 
 ### 其他
