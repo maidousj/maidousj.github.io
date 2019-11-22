@@ -234,3 +234,18 @@ The `XXX [Debug]` target overrides the `LIBRARY_SEARCH_PATHS` build setting defi
 
 还有些诸如UILabel，UITextView换行问题、UILabel框线问题等等弱智小问题，就不逐一记载了。
 
+### Git提交报错
+
+```shell
+fatal: The remote end hung up unexpectedly
+```
+
+原因是推送文件太大。
+
+解决办法：
+
+```shell
+git config --local http.postBuffer 524288000
+```
+
+设置为500MB。足够大了应该。
