@@ -48,11 +48,68 @@ USENIX Security 2020.
 
 实验结果都贼吊！
 
+### Threat Model
+
+ML模型都是黑盒的，敌手只能通过查询获得输出。
+
+敌手可以通过之前的一些工作，得到模型的参数和超参数，构建出和目标模型一样的影子模型。（这知道参数和超参，还叫啥黑盒，实验是利用之前工作推断出的近似参数还是直接用了模型现成的参数呢？）
+
+通过这两种信息模拟目标模型的行为来推导训练数据。
+
+### General Attack Pipeline
+
+如图1所示，攻击分为三步：
+
+1. adversary生成攻击输入(posterior difference)；
+2. encoder把posterior difference转化成隐向量；
+3. decoder把隐向量解码，针对不同攻击产生更新集的不同信息。
+
+![image-20191201151216990](/assets/images/2019-11-25-Usenix20-Updates-Leak/image-20191201151216990.png)
+
+**posterior difference.** 为了生成posterior difference，敌手**随机**选择一些数据作为探测集，用$D_{probe}$表示。然后向模型进行查询，分别生成探测集对应的标签$y_{probe}$和$y_{proble}^{\prime}$。$\delta = y_{probe}-y_{probe}^{\prime}$表示posterior difference。$\delta$的维度是$D_{probe}$个数和数据集种类数目的乘积。本文选用了100个样本，两种数据都是10类，因此维度是1000。
+
+**Encoder.** 是一个多层感知机，层数取决于$\delta$的维度。由于维度固定1000，因此encoder中用两个全连接层，第一层是128维的向量，第二层64维。
+
+**Decoder.** 每种attack是不同的。
+
+**Shadow Model.** 用来模拟目标模型的。
+
+> By controlling the training process of the shadow model, the adversary can derive the ground truth data needed to train her attack models.
+
+**敌手需要知道目标模型的结构和与目标数据集相同分布的一个本地数据集。**
+
+(你怎么能知道训练数据的分布？)
+
+为了训练影子模型$M_{shadow}$，首先构造一个和目标模型结构一样的ML模型。然后取本地数据集中的一部分$D_{shadow}$（剩下的是$D_{probe}$），分为两部分$D_{shadow}^{train}$和$D_{shadow}^{update}$，前者用来训练影子模型，后者分为m个数据集，每个数据集中的数量是依赖于不同攻击的。比如，single-sample攻击中每个子数据集只包含一个数据。敌手会利用m子数据集通过更新$M_{shadow}$生成m个新的影子模型。
+
+接下来敌手会用$D_{probe}$来探测影子模型，并且计算posterior difference $\delta_{shadow}^1 \dots \delta_{shadow}^m$。结合对应的shadow updating set的真实信息就可以推断出它攻击模型的训练数据。
+
+
+
+### Single-Sample Attack
+
+#####Single-sample Label Inference Attack
+
+decoder构造：全连接层加上一个softmax来把隐向量转化成label。
+
+通过上述方法生成影子模型，然后利用影子模型生成ground truth data，来训练attack model。损失函数用交叉熵，
+
+$$L_{CE} = \sum_{i} l_i\log(\hat{l_i})$$
+
+其中$l_i$是label i的真实概率，$\hat{l_i}$是预测概率，用ADAM做的优化。
+
+#####Single-sample Reconstruction Attack
+基于autoencoder(AE)来构造update dataset。
+
+
+
 
 
 ### Conclusion
 
 目前只针对了online learning场景。
+
+选探测集时是随机选的，用一定的方法选可能会提高供给效率，作为future work。
 
 
 
