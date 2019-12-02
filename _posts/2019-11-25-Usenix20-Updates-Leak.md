@@ -86,7 +86,7 @@ ML模型都是黑盒的，敌手只能通过查询获得输出。
 
 
 
-### Single-Sample Attack
+### Single-Sample Attacks
 
 #####Single-sample Label Inference Attack
 
@@ -101,15 +101,74 @@ $$L_{CE} = \sum_{i} l_i\log(\hat{l_i})$$
 #####Single-sample Reconstruction Attack
 基于autoencoder(AE)来构造update dataset。
 
+![image-20191202103113487](/assets/images/2019-11-25-Usenix20-Updates-Leak/image-20191202103113487.png){:width="400"}
+
+AE训练好后，敌手把AE的decoder加到攻击模型的encoder后边。
+
+attack model的训练分为两阶段：
+
+1. 敌手用shadow dataset训练AE；
+2. 用和single-sample label inference attack相同的步骤训练attack model。
+
+先预训练AE的decoder，然后再和attack model的encoder一起训练，损失函数用MSE：
+
+ $$L_{MSE} = \Vert \hat{x}_{update} - x_{update} \Vert_2^2$$
+
+其中$\hat{x}_{update}$是预测的data sample，用ADAM做优化器。
+
+（这里的x应该是一个向量，MNIST数据集中是0和1的，用到其他地方也能好用么？）
+
+放个论文中的图吧
+
+![image-20191202155700524](/assets/images/2019-11-25-Usenix20-Updates-Leak/image-20191202155700524.png){:width="400"}
+
+> our attack indeed learns to construct the specific updating data sample instead of a general representation of samples affiliated with the same label as the target updating sample.
+
+###Multi-Sample Attacks
+
+##### Multi-sample Label Distribution Estimation Attack Attack
+
+目标是估计update set中样本label的分布，可以看作是single版本的泛化。
+
+decoder结构和single版本的一样。用KL散度作为目标函数。
+
+> We assume the adversary knows the cardinality of the updating set.
 
 
 
+##### Multi-sample Reconstruction Attack Attack
+
+之前用的AE不能生成多个samples，所以用GAN。但是本攻击的目标是根据posterior difference $\delta$重构$D_{update}$，标准GAN做不到，因此提出了混合生成模型，BM-GAN。
+
+**BM-GAN.** decoder作为BM-GAN的生成器，类似于Conditional GAN中做的那样。但是cGAN容易mode collapse。为了解决这个问题，引入了重构损失(reconstruction cost)。然而，对于给定的$\delta$和噪声向量$z$，应该让BM-GAN去重构哪个点呢？因此，本文给了GAN极大的自由，让它自己选择data sample去重构。用基于"Best Match"的目标函数去实现这个：
+
+$$L_{BM} = \sum_{x\in D_{update}} \min_{\hat{x}\sim G} \Vert\hat{x}-x\Vert _2^2 + \sum_{\hat{x}}\log(D(\hat{x}))$$
+
+其中，$\hat{x}\sim G$表示给定隐向量$\mu$和noise sample $z$，BM-GAN生成的samples。前半部分就是标准的MSE，
+
+> However, unlike the standard MSE reconstruction cost, given a data sample $x \in D_{update}$, the cost is based only on the generated sample $\hat{x}$ which is closest to the data sample $x\in D_{update}$.
+
+(上面这句没看懂。。)
+
+这就允许BM-GAN在没有得到确切的$(\delta, z)$对和样本之间的map时，仍可以对$D_{udpate}$进行重构。最后，判别器D保证了$\hat{x}$和真实数据的不可区分性。
+
+### Possible Defences
+
+##### Adding Noise to Posteriors
+
+考虑直接给posterior difference上加扰动，但是你不可能直接知道敌手什么时候用什么数据来探测你的模型。因此可以直接在每次通过model进行query后加一个噪声。本文尝试加入均匀分布的噪声，实验表明可以使得某些攻击有一个明显的下降。但是对于multi-sample重构攻击，效果却不明显，可能是因为noise vector z是BM-GAN输入的一部分，因此attack model对noise input更加鲁棒。（我觉得有疑问）
+
+##### Differential Privacy
+
+DP设计就是用来降低本文攻击效果的，但是需要强调DP依赖于privacy budget，对模型本身的性能影响也很大。
 
 ### Conclusion
 
 目前只针对了online learning场景。
 
 选探测集时是随机选的，用一定的方法选可能会提高供给效率，作为future work。
+
+encoder、decoder和BM-GAN的结构见论文。
 
 
 
