@@ -4,7 +4,7 @@ import getopt
 import ipdb
 
 def usage():
-    print "python title.py -t $title -i $image(stored in ../assets/images) -tag $tag"
+    print "python title.py -t $title -i $image(stored in ../assets/images) --tag $tag"
 
 
 opts, args = getopt.getopt(sys.argv[1:], "ht:i:c:", ["help", "title=", "image=", "tag=", "category="])
@@ -37,6 +37,7 @@ date = date.replace('\n', '-')
 
 if title == "":
     print "You must input title at least"
+    usage()
     sys.exit(1)
 
 titlecontent=["---",
