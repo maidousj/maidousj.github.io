@@ -12,6 +12,8 @@ author: Sun
 
 项目需要，在本地创建了新的分支，但是在push的时候遇到了问题。
 
+<!--more-->
+
 ```shell
 git push --set-upstream origin newbranch
 ```
