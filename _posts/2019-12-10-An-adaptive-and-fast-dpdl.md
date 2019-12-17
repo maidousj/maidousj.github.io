@@ -1,10 +1,10 @@
 ---
 title: An adaptive and fast convergent approach to DPDL notes
-layout: Paper Reading
+layout: post
 date: 2019-12-10 10:58
 image: /assets/images/
 headerImage: false
-category: Blog
+category: Paper Reading
 tag:
 - DP
 - DL
