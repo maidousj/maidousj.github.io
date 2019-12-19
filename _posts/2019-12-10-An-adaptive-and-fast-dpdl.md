@@ -15,11 +15,12 @@ author: Sun
 
 Infocom 2020, Zhiying Xu, Shuyu Shi, etc.
 
-###Abstract
+### Abstract
+
 提出一种适应性的快速的保护隐私学习算法，ADADP。该算法通过适应性的学习率提高了收敛速度从而极大的减少了privacy cost，同时通过引入适应性的噪声量，缓和了DP对模型正确率的负面影响。
 <!--more-->
 
-###Introduction
+### Introduction
 
 基于DP的机器学习主要有两种策略：**data obfuscation**和**gradient obfuscation**。前者的主要缺点是显著降低了模型的准确率，因为为了保证DP而加入的噪声可能太大，导致training label不可区分。后者相较于前者可能有一定的提升，但是仍有三个缺点：1）由于收敛慢导致privacy cost累积量高；2）准确率依然不够，因为加入的噪声都服从同一分布，会引起原始梯度的large distortion；3）计算低效，因为需要多次评估模型或解决每次迭代的大规模优化问题，从而使任务在计算上变得过于繁琐。
 
@@ -34,14 +35,16 @@ Infocom 2020, Zhiying Xu, Shuyu Shi, etc.
 2. ADADP拥有可证明的隐私保证和与非隐私版本模型相当的准确率，噪声的适应依赖于different gradient components和不同的训练次数；
 3. computationally efficient, 因为不需要在每次迭代中解决任何额外的优化问题来决定噪声的分布。作为对比，[1]需要解决大量的非凸优化问题。
 
-###Approach
+### Approach
 
 具体方法就是对学习率和噪声量进行适应性修改。
 
-####Adaptive Learning Rate
+#### Adaptive Learning Rate
+
 对于学习率：采用类似于RMSPROP的适应性策略。
 
-####Adaptive Noise
+#### Adaptive Noise
+
 对于噪声量，文章首先证明(Lemma 1)对于不同维度上进行不同量的扰动（均值方差不同的高斯噪声），与所有维度都加相同分布的扰动（均值方差都相同，但是量是随机的），这二者在满足一定条件时，可以达到相同的$(\epsilon, \delta)$-DP。
 
 ![](/assets/images/2019-12-10-An-adaptive-and-fast-dpdl/image-20191211100005606.png){:width="400"}
@@ -88,7 +91,7 @@ C是*L2 norm clipping bound*。
 
 
 
-###Reference
+### Reference
 
 [1] L. Xiang, J. Yang, and B. Li, “Differentially-private deep learning from an optimization perspective,” in Proceedings of 38th Annual IEEE Conference on Computer Communications (INFOCOM), 2019, pp. 559–567.
 
