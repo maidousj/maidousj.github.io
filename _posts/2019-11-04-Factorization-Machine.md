@@ -39,9 +39,9 @@ $$\langle\mathbb{v}_i,\mathbb{v_j}\rangle = \sum_{f=1}^k v_{i,f}\cdot v_{j,f}$$
 
 FM可以在稀疏条件下学习出这些interactions(V)是因为它**通过因式分解打破了v之间的独立性**。
 
-![](/assets/images/2019-11-04-Factorization-Machine/image-20191104200247977.png){:width="400"}
+![](/assets/images/2019-11-04-Factorization-Machine/image-20191104200247977.png){:width="500"}
 
-举例比如用户A并没有评价电影ST，因此$w_{A,ST}=0$。但是因式分解可以估计它们之间的联系。首先，B和C都相似地评价了SW，$\langle \mathrm{v}_B,\mathrm{v}_{SW} \rangle$和$\langle \mathrm{v}_C,\mathrm{v}_{SW} \rangle$也应该相似。A和C应该有不同的factor vector，因为他们对TI和SW有不同的评价。然后ST和SW应该有类似的factor vector，因为B对他们评价一样。综上，A对ST对比较应该和A对SW的评价类似---这也符合直觉。
+举例比如用户A并没有评价电影ST，因此$w_{A,ST}=0$。但是因式分解可以估计它们之间的联系。首先，B和C都相似地评价了SW，$<\mathrm{v}_B,\mathrm{v}_{SW}>$和$< \mathrm{v}_C,\mathrm{v}_{SW}>$应该相似。A和C应该有不同的factor vector，因为他们对TI和SW有不同的评价。然后ST和SW应该有类似的factor vector，因为B对他们评价一样。综上，A对ST对比较应该和A对SW的评价类似---这也符合直觉。
 
 接下来为了降低计算复杂度：
 
