@@ -110,6 +110,8 @@ Predicting response in mobile advertising with hierarchical importance-aware fac
 
 ##### Hyperparameters
 
+为了保证端到端的DP，对超参的调整也应该保证private的方式进行。
+
 
 
 
