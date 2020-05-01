@@ -38,7 +38,7 @@ Objective Perturbation针对目标函数进行扰动，然后计算新的最小�
 
 DP convex ERM:
 
-[K. Chaudhuri, C. Monteleoni, and A. D. Sarwate, “Differentially private empirical risk minimization,” JMLR, 2011.] 提出了output和objective扰动；
+[8 K. Chaudhuri, C. Monteleoni, and A. D. Sarwate, “Differentially private empirical risk minimization,” JMLR, 2011.] 提出了output和objective扰动；
 
 [P. Jain and A. Thakurta, “(near) dimension independent risk bounds for differentially private learning,” in Proceedings of the 31st International Conference on International Conference on Machine Learning - Volume 32, ser. ICML’14. JMLR.org, 2014, pp. I–476–I–484.] 提出了几乎是维度独立的安全学习算法，但是只适用于标准setting。
 
@@ -110,13 +110,21 @@ Predicting response in mobile advertising with hierarchical importance-aware fac
 
 ##### Hyperparameters
 
-为了保证端到端的DP，对超参的调整也应该保证private的方式进行。
+为了保证端到端的DP，对超参的调整也应该保证private的方式进行。[8,14,15]提出了一些方法，但是对于不同的算法不太好比较。因此本文用**grid search**的办法来找到每个超参的最优值。所谓格搜索，就是按照表2来考察哪个超参效果更好。
+
+![](/Users/sunjie/Documents/workspace/maidousj.github.io/assets/images/2020-01-06-Towards-Practical-DP-Convex-Optimization/image-20200501221451566.png)
+
+参数C是用来控制$L_1/L_2$-ball的尺寸的，这个球的作用是参数空间(**要看下代码里怎么体现的**)?
+
+> The parameter C controls the size of the L1/L2-ball from which models are selected by private Frank-Wolfe/the other algorithms respectively.
 
 
 
 
 
 
+
+[14 K. Chaudhuri and S. Vinterbo, “A stability-based validation pro- cedure for differentially private machine learning,” in Proceed- ings of the 26th International Conference on Neural Information Processing Systems - Volume 2, ser. NIPS’13. USA: Curran Associates Inc., 2013, pp. 2652–2660.]
 
 [15 M. Abadi, A. Chu, I. Goodfellow, H. B. McMahan, I. Mironov, K. Talwar, and L. Zhang, “Deep learning with differential pri- vacy,” in Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security, ser. CCS ’16. New York, NY, USA: ACM, 2016, pp. 308–318.]
 
