@@ -40,7 +40,7 @@ DP convex ERM:
 
 [8 K. Chaudhuri, C. Monteleoni, and A. D. Sarwate, “Differentially private empirical risk minimization,” JMLR, 2011.] 提出了output和objective扰动；
 
-[P. Jain and A. Thakurta, “(near) dimension independent risk bounds for differentially private learning,” in Proceedings of the 31st International Conference on International Conference on Machine Learning - Volume 32, ser. ICML’14. JMLR.org, 2014, pp. I–476–I–484.] 提出了几乎是维度独立的安全学习算法，但是只适用于标准setting。
+[11 P. Jain and A. Thakurta, “(near) dimension independent risk bounds for differentially private learning,” in Proceedings of the 31st International Conference on International Conference on Machine Learning - Volume 32, ser. ICML’14. JMLR.org, 2014, pp. I–476–I–484.] 提出了几乎是维度独立的安全学习算法，但是只适用于标准setting。
 
 [S. Song, K. Chaudhuri, and A. D. Sarwate, “Stochastic gradient descent with differentially private updates,” in Global Conference on Signal and Information Processing (GlobalSIP), 2013 IEEE. IEEE, 2013, pp. 245–248.]第一次提出了private SGD。
 
@@ -84,7 +84,7 @@ Predicting response in mobile advertising with hierarchical importance-aware fac
 
 
 
-##### Experiment Setup
+##### A. Experiment Setup
 
 分别对比四种方法中的算法：目标扰动、输出扰动、private梯度下降和private Frank-Wolfe算法。
 
@@ -112,11 +112,53 @@ Predicting response in mobile advertising with hierarchical importance-aware fac
 
 为了保证端到端的DP，对超参的调整也应该保证private的方式进行。[8,14,15]提出了一些方法，但是对于不同的算法不太好比较。因此本文用**grid search**的办法来找到每个超参的最优值。所谓格搜索，就是按照表2来考察哪个超参效果更好。
 
-![](/Users/sunjie/Documents/workspace/maidousj.github.io/assets/images/2020-01-06-Towards-Practical-DP-Convex-Optimization/image-20200501221451566.png)
+![](/assets/images/2020-01-06-Towards-Practical-DP-Convex-Optimization/image-20200501221451566.png){:width="400"}
 
 参数C是用来控制$L_1/L_2$-ball的尺寸的，这个球的作用是参数空间(**要看下代码里怎么体现的**)?
 
 > The parameter C controls the size of the L1/L2-ball from which models are selected by private Frank-Wolfe/the other algorithms respectively.
+
+
+
+##### Algorithm Implementations
+
+见论文中附录C和仓库“Differentially Private Convex Optimization Benchmark,” 2017. [Online]. Available: [dpml-benchmark](https://github.com/sunblaze-ucb/).
+
+##### Experiment procedure
+
+实验的目标是要找到准确率最高的privacy parameters。每组超参组合10次，准确率取平均值。
+
+##### Non-private baseline
+
+用Scikit-learn的LogisticRegression来训练的non-private算法，训练集和测试集都和private算法一样，训练模型时候没有进行sample clipping。
+
+**Strategy for Hyperparameter-free Approximate Minima Perturbation**
+
+设置L=1可以得到为目标函数添加噪声和对sample clipping后的信息损失之间一个比较好的trade-off。
+
+##### B. Loss functions
+
+选用logistic regression和Huber SVM。LR是带L2正则项的损失函数。
+
+$$l(\theta,(x,y)) = \ln(1+\exp(y \langle\theta, x\rangle))+\frac{\Lambda}{2}\Vert\theta^{2}\Vert$$,
+
+其中$y\in \{-1,1\}$.
+
+考虑了不带正则项的，$\Vert x\Vert\leq L$时，$L_2$-Lipschitz常数是$L$。
+
+带正则项的，$\Vert x\Vert\leq L, \Vert\theta\Vert\leq C$，$L_2$-Lipschitz常数是$L+\Lambda C$，同时也是$(L^2+\Lambda)$-smooth的，$\Lambda$-strongly convex。
+
+##### C. Experiment 1: Low-dimensional Datasets
+
+![](/assets/images/2020-01-06-Towards-Practical-DP-Convex-Optimization/image-20200502011958016.png){:width="400"}
+
+对低维数据来说，二分类的准确率显然优于多分类的准确率，因为$\epsilon$和$\delta$需要为每个类别建立的二分类器进行划分。
+
+##### D. Experiment 2: High-dimensional Datasets
+
+对高维数据来说，大部分数据上AMP算法最好，但是在Synthetic-H上，private Frank-Wolfe算法效果最好。从[11,17]中可以看到，当损失为GLM时，目标扰动和private Frank-Wolfe都有几乎和维度无关的utility guarantees。
+
+private FW算法在模型稀疏时是最优的，
 
 
 
