@@ -158,7 +158,11 @@ $$l(\theta,(x,y)) = \ln(1+\exp(y \langle\theta, x\rangle))+\frac{\Lambda}{2}\Ver
 
 对高维数据来说，大部分数据上AMP算法最好，但是在Synthetic-H上，private Frank-Wolfe算法效果最好。从[11,17]中可以看到，当损失为GLM时，目标扰动和private Frank-Wolfe都有几乎和维度无关的utility guarantees。
 
-private FW算法在模型稀疏时是最优的，
+private FW算法在模型稀疏时是最优的，而数据集Synthetic-H可以通过10个重要的特征来很好的表达出来。pFW算法每次迭代中最多增加一个特征，噪声随着迭代次数增加，但是并不随着特征总数增加，因为它随着samples的$l_{\infin}$-norm的bound增加。而AMP的noise是随着$l_2$-norm的bound增加。
+
+##### E. Experiment 3: Real-world Use Cases
+
+用了Uber的真实数据。所有结果都和non-private的baseline很接近，说明在实际中，privacy带来的损失是可以忽略的。数据集#1中，AMP效果甚至优于baseline，[18,19]已经理论论证过DP可以有正则化的作用。
 
 
 
@@ -166,7 +170,9 @@ private FW算法在模型稀疏时是最优的，
 
 
 
-[14 K. Chaudhuri and S. Vinterbo, “A stability-based validation pro- cedure for differentially private machine learning,” in Proceed- ings of the 26th International Conference on Neural Information Processing Systems - Volume 2, ser. NIPS’13. USA: Curran Associates Inc., 2013, pp. 2652–2660.]
+
+
+[14 K. Chaudhuri and S. Vinterbo, “A stability-based validation procedure for differentially private machine learning,” in Proceed- ings of the 26th International Conference on Neural Information Processing Systems - Volume 2, ser. NIPS’13. USA: Curran Associates Inc., 2013, pp. 2652–2660.]
 
 [15 M. Abadi, A. Chu, I. Goodfellow, H. B. McMahan, I. Mironov, K. Talwar, and L. Zhang, “Deep learning with differential pri- vacy,” in Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security, ser. CCS ’16. New York, NY, USA: ACM, 2016, pp. 308–318.]
 
