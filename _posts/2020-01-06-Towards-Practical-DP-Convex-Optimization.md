@@ -58,6 +58,15 @@ Predicting response in mobile advertising with hierarchical importance-aware fac
 
 
 
+#### Approximate Minima Perturbation
+
+可以理解为是目标扰动的一种替代方案，即使算法的输出不是扰动后的目标函数的实际最小值。本文对于目标扰动的改进：
+
+* 目标扰动的privacy保证是在优化问题每次都可以取到精确最小值的时候成立，但是在实际的有限次迭代中，这是不可能保证的。AMP通过取近似值来解决这个问题。
+* 之前的目标扰动工作[8,9]只在损失函数是GLM(Generalized Linear Model)时才成立，as they implicitly make a rank-one assumption on the Hessian of the loss 
+
+
+
 
 
 
