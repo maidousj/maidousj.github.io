@@ -63,11 +63,13 @@ Predicting response in mobile advertising with hierarchical importance-aware fac
 可以理解为是目标扰动的一种替代方案，即使算法的输出不是扰动后的目标函数的实际最小值。本文对于目标扰动的改进：
 
 * 目标扰动的privacy保证是在优化问题每次都可以取到精确最小值的时候成立，但是在实际的有限次迭代中，这是不可能保证的。AMP通过取近似值来解决这个问题。
-* 之前的目标扰动工作[8,9]只在损失函数是GLM(Generalized Linear Model)时才成立，as they implicitly make a rank-one assumption on the Hessian of the loss 
+* 之前的目标扰动工作[8,9]只在损失函数是GLM(Generalized Linear Model)时才成立，as they implicitly make a rank-one assumption on the Hessian of the loss $\nabla^2 l(\theta;d)$。Via a careful perturbation analysis of the Hessian, we extend the analysis to any convex loss function under standard assumptions. 
 
+![](/assets/images/2020-01-06-Towards-Practical-DP-Convex-Optimization/image-20200506005318919.png){:width="400"}
 
+AMP为目标扰动提供了一种基于收敛的方案，也就是说，一旦算法找到一个模型$\theta_{approx}$，那么被扰动的目标函数的梯度的范数$\nabla L_{priv}(\theta_{approx};D)$会在一个预先定义的阈值$\gamma$内，然后输出对$\theta_{approx}$加噪声后的$\theta_{out}$。由于扰动后的目标函数是强凸的，加入标准差为$\sigma_2$的噪声可以保证DP，$\sigma_2$线性依赖于$\gamma$。
 
-
+参数$(\epsilon_1,\delta_1)$表示用于扰动目标的隐私预算，剩余的$(\epsilon_2,\delta_2)$表示被用于给近似最小值$\theta_{approx}$加噪声的隐私预算。参数$\epsilon_3$是$\epsilon_1$的一部分，用来扰动目标函数；剩下的$(\epsilon_1-\epsilon_3)$用来扰动正则项。
 
 
 
