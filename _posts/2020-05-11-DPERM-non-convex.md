@@ -36,7 +36,7 @@ Wang D, Chen C, Xu J. Differentially private empirical risk minimization with no
 
 因此，很难将获得的解与全局或局部最小值进行比较。于是，本文提出以下问题：
 
-* **excess emirical (population) risk是否可以用来衡量DP条件下，非凸损失函数的error bound？**
+* **excess empirical (population) risk是否可以用来衡量DP条件下，非凸损失函数的error bound？**
 
 由于深度学习中，找到一个全局最小值是很难的，很多机器学习的工作开始将注意力转移到寻找局部最小值上。**已有工作表明，快速收敛到局部最小值对于这些任务来说已经足够了，但是收敛到临界点(critical points, 梯度消失的点)是不可接受的。**[5]表明，为非凸函数计算局部最小值实际上是NP-hard的。幸运的是，机器学习中的许多非凸函数都是严格的鞍[6]，这意味着二阶固定点（或近似局部最小值）足以获得足够接近一些局部最小值的点。
 
@@ -117,7 +117,25 @@ Gradient Langevin Dynamics (GLD)算法，梯度下降算法等一种泛化：在
 
 ![](/assets/images/2020-05-11-DPERM-non-convex/image-20200516162508071.png){:width="400"}
 
+接下来的定理1证明了算法1满足DP。定理2给出了population risk和empirical risk的理论上界。（这里有几个地方看不明白，1. 什么是the probability law，用在Wasserstein distance里的；）
 
+
+
+接下来说定理2给出的经验风险只在$\beta \ge O(d)$的时候才有意义。bound比凸损失函数的情况大。于是定理3利用随机微分方程2给出了改进的bound。
+
+> Theorem 3 is a significant improvement over Theorem 2, which is derived based on a novel and non-trivial analysis on the time-average error of SDEs.
+
+有三点值得强调：1）虽然time-average-error analysis of an SDE已经被研究过了，但是之前的文章中$\beta$是常数，不能直接应用到本文。之前的工作需要假设基于泊松方程解的有界假设，对于本文来说太强了。2）本文结果意义重大，因为它为基于扩散的贝叶斯采样提供了新的界限，例如（Vollmer等，2016； Chen等，2015），其中可以量化误差范围内对d的依赖性， 是先前结果中缺少的关键片段。3）定理3表明，如果返回随机的$w_j$而不是最终的$w_T$，和n相关的项可以从$1/\log n$变为$n^{-\tau}$. （每个字都能看懂，连起来就有点懵逼）
+
+
+
+接下来的定理4表明，在假设1的情况下，存在$\epsilon$-DP算法，经验风险的bound是$\tilde{O}(\frac{d}{n\epsilon})$，时间复杂度是指数级的（这还能用吗）。考虑d是常数，
+
+
+
+对于population risk的上界，针对具体问题来改进bound。主要关注generalized linear model with non-convex loss functions and the robust regressions problem with additional assumptions，提出了population risk是$O(\frac{\sqrt[4]{d}}{\sqrt{n\epsilon}})$。
+
+**Generalized Linear Model (GLM).** $\mathcal{X}={x\in\mathbb{R}^d|\Vert x\Vert_2\leq 1}, C={w\in\mathbb{R}^d|\Vert w\Vert_2\leq 1}, and\ \mathcal{Y}=\{0,1\},\  \mathcal{Z}=\mathcal{X}\times\mathcal{Y}$，同时有一个link function $\sigma$，GLM拥有损失函数：$\mathcal{l}(w,(x,y))=(\sigma(\langle w,x\rangle)-y)^2$。
 
 
 
