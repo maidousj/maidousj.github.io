@@ -135,7 +135,29 @@ Gradient Langevin Dynamics (GLD)算法，梯度下降算法等一种泛化：在
 
 对于population risk的上界，针对具体问题来改进bound。主要关注generalized linear model with non-convex loss functions and the robust regressions problem with additional assumptions，提出了population risk是$O(\frac{\sqrt[4]{d}}{\sqrt{n\epsilon}})$。
 
-**Generalized Linear Model (GLM).** $\mathcal{X}={x\in\mathbb{R}^d|\Vert x\Vert_2\leq 1}, C={w\in\mathbb{R}^d|\Vert w\Vert_2\leq 1}, and\ \mathcal{Y}=\{0,1\},\  \mathcal{Z}=\mathcal{X}\times\mathcal{Y}$，同时有一个link function $\sigma$，GLM拥有损失函数：$\mathcal{l}(w,(x,y))=(\sigma(\langle w,x\rangle)-y)^2$。
+**Generalized Linear Model (GLM).** $\mathcal{X}=\{x\in\mathbb{R}^d|\Vert x\Vert_2\leq 1\}, C=\{w\in\mathbb{R}^d|\Vert w\Vert_2\leq 1\}, and\ \mathcal{Y}=\{0,1\},\  \mathcal{Z}=\mathcal{X}\times\mathcal{Y}$，同时有一个link function $\sigma$，GLM拥有损失函数：$\mathcal{l}(w,(x,y))=(\sigma(\langle w,x\rangle)-y)^2$。
+
+随后定义了**Robust Regression**：
+
+令$\mathcal{Z}$和$C$一样，对于常数Y来说，$\mathcal{Y}=[-Y,Y]$，对非凸的正损失函数$\psi$，定义loss of robust regression as $l(w,(x,y))=\psi(\langle x,w \rangle -y)$。（这个是不是写错了？）
+
+![](/assets/images/2020-05-11-DPERM-non-convex/image-20200523001557782.png){:width="400"}
+
+算法2是基于Frank-wolfe方法来的。定理5给出了在GLM和Robust Regression情况下的bound of the population risk的上界是$O(\frac{\sqrt[4]{d\ln \frac{1}{\delta}}}{\sqrt{n\epsilon}})$。
+
+被算法2启发，在条件成为$\mathcal{X}=\{x\in\mathbb{R}^d|\Vert x\Vert_\infin\leq 1\}, C=\{w\in\mathbb{R}^d|\Vert w\Vert_1\leq 1\}$时，可以推导出population risk的上界只依赖于$\log d$，表明适用于高维数据的应用。直接用(Talwar, K, 2015)提出的DP-Frank-Wolfe算法来解决我们的问题。
+
+定理6给出了算法3的bound。
+
+![](/assets/images/2020-05-11-DPERM-non-convex/image-20200524122054451.png){:width="400"}
+
+
+
+#### Finding Approximate Local Minimum Privately
+
+
+
+
 
 
 
@@ -164,3 +186,6 @@ Gradient Langevin Dynamics (GLD)算法，梯度下降算法等一种泛化：在
 [9] Xu, P., Chen, J., Zou, D., and Gu, Q. Global convergence of langevin dynamics based algorithms for nonconvex opti- mization. In Advances in Neural Information Processing Systems, pp. 3126–3137, 2018a.
 
 [10] Tzen, B., Liang, T., and Raginsky, M. Local optimality and generalization guarantees for the langevin algorithm via empirical metastability. In Conference On Learning Theory, pp. 857–875, 2018.
+
+
+
