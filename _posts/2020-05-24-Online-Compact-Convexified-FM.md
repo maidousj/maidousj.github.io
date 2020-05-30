@@ -81,13 +81,39 @@ $$C=\left[ \begin{matrix}   Z & w \\ w^T & 2w_0  \end{matrix}  \right]$$
 
 
 
+接下来的引理3证明了$\hat{y}(C)=\frac{1}{2}\hat{x}^TC\hat{x}$也是凸的：
+
+![](/assets/images/2020-05-24-Online-Compact-Convexified-FM/image-20200529000946300.png){:width="400"}
+
+引理4给出了它的复合函数也是凸的。
+
+总结就是，本文引入了新的凸化机制，得到了新的FM公式，这个公式中，决策集合是凸的、紧致的而且复合函数也是凸的。
+
+![](/assets/images/2020-05-24-Online-Compact-Convexified-FM/image-20200529105906064.png){:width="400"}
+
+**vanilla FM和CCFM对比：**主要有三个不同，1) vanilla FM(就是FM吧)的预测函数是非凸的，CCFM的是凸的；2）FM需要特征交互矩阵是对称且半正定的，CCFM只需要对称；3）FM值考虑了不同特征之间的交互，CCFM考虑了所有的特征交互（不觉得有什么用），后者更为通用，增强了表达性。
+
+**convex FM和CCFM对比：**1）CFM的一阶特征权重向量和二阶特征交互矩阵是分开表达的，resulting in a **non-compact formulation**，CCFM是统一的compact augmented matrix来表达所有参数的；2）CCFM把矩阵C限制为低秩的，CFM只限制了二阶矩阵，一阶特征向量unbounded；3）CFM不适用于OCO框架，因为它的决策集合是non-compact的。
 
 
 
+##### Online Learning Algorithm for Compact Convexified Factorization Machine
+
+OGD和FTRL是经典的在线学习优化算法，但是映射的操作会带来巨大的计算开销（映射过程中的SVD操作，因此不适用于特殊的决策集合，比如核范数球），**Online Conditional Gradient（OCO）算法是一种projection-free的在线学习算法，可以免去庞大的映射计算开销。**
+
+> the nuclear norm ball is a typical decision set where the expensive projection step can be replaced by the efficient linear optimization subroutine in the projection-free OCG algorithm.
+
+![](/assets/images/2020-05-24-Online-Compact-Convexified-FM/image-20200529120320822.png){:width="400"}
 
 
 
+![](/assets/images/2020-05-24-Online-Compact-Convexified-FM/image-20200529121809388.png){:width="400"}
 
+  
+
+
+
+   
 
 
 
