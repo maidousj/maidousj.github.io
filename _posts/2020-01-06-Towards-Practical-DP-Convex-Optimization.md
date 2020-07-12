@@ -87,7 +87,7 @@ AMP为目标扰动提供了一种基于收敛的方案，也就是说，一旦�
 
    所有的算法性能的顺序是否一致，针对不同的数据集是否会有所差别？
 
-   基本上本文提出的AMP都效果更好一些。
+   基本上本文提出的AMP都效果更好一些。某些特定条件下，private Frank-Wolfe算法更好。
 
 3. Can Approximate Minima Perturbation be deployed without hyperparameter tuning?
 
