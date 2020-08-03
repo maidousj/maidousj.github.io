@@ -14,7 +14,7 @@ iOS app提交时不支持旧版本的xcode，为了升级xcode，被迫升级了
 
 怕什么来什么，果然写好的代码编译出了问题。纯记录当前工程是怎么解决的，不深究原因。
 
-####Unkown type name 'tls_protocol_version_t'
+#### Unkown type name 'tls_protocol_version_t'
 
 Google半天，最靠谱的是https://www.jianshu.com/p/5abbcf9601bd。
 
@@ -50,7 +50,7 @@ Google半天，最靠谱的是https://www.jianshu.com/p/5abbcf9601bd。
 
 
 
-####UIKit.framework: bundle format unrecognized, invalid, or unsuitable Command CodeSign failed with a nonzero exit code
+#### UIKit.framework: bundle format unrecognized, invalid, or unsuitable Command CodeSign failed with a nonzero exit code
 
 把报错的相应地framework从Build Phases的embedded framework中去掉。
 
@@ -58,7 +58,9 @@ Google半天，最靠谱的是https://www.jianshu.com/p/5abbcf9601bd。
 
 好不容易编译通过了，结果安不到手机了。。
 
-####Unable to install "xxx"
+
+
+#### Unable to install "xxx"
 
 Domain: com.apple.dt.MobileDeviceErrorDomain
 
