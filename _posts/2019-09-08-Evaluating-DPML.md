@@ -17,7 +17,7 @@ Jayaraman B, Evans D. Evaluating Differentially Private Machine Learning in Prac
 
 #### Abstract
 
-在实现PPML时，为了提高模型的可用性，常会选择较大的$\varepsilon$，而对这些选择对有意义的隐私所产生的影响知之甚少；此外，在使用迭代学习方法的场景中，差分隐私的变种可以提供更严密的分析，被用于降低所需的隐私预算，但隐私性和实用性之间存在难以理解的权衡。所以本文量化了这些影响。
+在实现PPML时，为了提高模型的可用性，常会选择较大的$\varepsilon$，而对这些选择对有意义的隐私所产生的影响知之甚少；此外，在使用迭代学习方法的场景中，差分隐私的变种可以提供更严密的分析，被用于降低所需的隐私预算，但隐私性和实用性之间存在难以理解的权衡。所以**本文量化了这些影响**。
 
 <!--more-->
 
@@ -151,7 +151,25 @@ $$TPR-FPR$$
 
 ![](/assets/images/2019-09-08-Evaluating-DPML/image-20190911173800053.png){:width="400"}
 
-实验待补，饿了，觅食去。
+(实验待补，饿了，觅食去。)
+
+(一年后，我来开始补实验了。。唉)
+
+![](/Users/sunjie/Documents/workspace/maidousj.github.io/assets/images/2019-09-08-Evaluating-DPML/image-20200829092248029.png)
+
+图1左和右比较，表示batch gradient clipping基本上不能看，所以后边的实验都是用的per-instance gradient clipping。
+
+从图1右可以看出，Naive Composition在$\epsilon\leq 10$时准确率为0.01，是100个分类里的随机猜测，基本上不可用，$\epsilon=1000$时，loss几乎为0。当$\epsilon \geq 100$时，Advanced Composition加入了比NC更多的噪声，因此不应该采用。zCDP和RDP分别在$\epsilon =500$和$\epsilon=50$时，loss接近0，和NC相比是量级的减小。**对于相同的privacy budget，这些DP的变体只需要更少的噪声来达到。**
+
+![](/Users/sunjie/Documents/workspace/maidousj.github.io/assets/images/2019-09-08-Evaluating-DPML/image-20200829095813064.png)
+
+图2中的理论上界是$e^{\epsilon}-1$，表示$\epsilon$-DP下的privacy leakage。三个图都表明，**inference attacks还有很大的提升空间**。从图1(b)和图2中可以看出，RDP在$\epsilon=10$时可以取得和NC在$\epsilon=500$时类似的utility和privacy leakage。
+
+**被attack的程度只和utility相关。$\epsilon$越小，隐私保护程度越高，这个应该是只能在同一种DP机制里成立。**
+
+
+
+
 
 
 

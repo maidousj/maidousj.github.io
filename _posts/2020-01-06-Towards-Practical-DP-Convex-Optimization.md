@@ -36,6 +36,10 @@ Objective Perturbation针对目标函数进行扰动，然后计算新的最小�
 
 ### Related Work
 
+放一张大佬做报告时候的截图：
+
+![](/assets/images/2020-01-06-Towards-Practical-DP-Convex-Optimization/image-20200901214324798.png)
+
 DP convex ERM:
 
 [8 K. Chaudhuri, C. Monteleoni, and A. D. Sarwate, “Differentially private empirical risk minimization,” JMLR, 2011.] 提出了output和objective扰动；

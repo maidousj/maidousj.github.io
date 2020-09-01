@@ -39,3 +39,37 @@ DP框架"less about privacy and more about algorithmic stability"。本文提出
 * 对multi-armed bandit算法的统一分析不仅统一了过去使用的大量扰动和正则化器的处理方法，而且揭示了由它们引起的微分稳定性的确切类型（定理4.2）；
 * 针对有专家的多臂赌博机问题，提出了新的算法，可以实现与EXP4算法[9 Peter Auer, Nicolo Cesa-Bianchi, Yoav Freund, and Robert E Schapire. The nonstochastic multiarmed bandit problem. SIAM journal on computing, 32(1):48–77, 2002.]相同的0阶和1阶界限。
 
+
+
+#### Stability notitions motivated by DP
+
+有一些研究统计学习算法稳定性分析的工作，但是很少有工作研究稳定性条件下的low regret online algorithm。本文主要用DP作为稳定性概念【Cynthia Dwork and Aaron Roth. The algorithmic foundations of differential privacy. Founda- tions and Trends in Theoretical Computer Science, 9(3-4):211–407, 2014. 13.2节 ，对小扰动要具有稳定性，这是DP的标志】。
+
+DP通过以下散度来量化稳定性：P,Q是概率空间中的两个分布，P和Q之间的$\delta$-approximate max-divergence定义如下：
+
+$$D_{\infin}^{\delta}(P,Q)=\sup_{P(B)>\delta}\log\frac{P(B)-\delta}{Q(B)}$$
+
+where the supremum is taken over measurable sets B。要指出最大散度不是一种metric，因为它不对称而且不满足三角不等式。
+
+接下来定义了在线学习的稳定性，量化了对于新的损失函数，算法的分布会发生多少变化。
+
+![](/assets/images/2020-04-18-OL-via-DP-lens/image-20200831112202059.png)
+
+
+
+#### Key Lemma
+
+下面引理很简单但是很强大。因为，首先，它使DP中大量的算法工作可用于推导regret界限；其次，DP算法经常添加扰动以实现隐私。
+
+![](/assets/images/2020-04-18-OL-via-DP-lens/image-20200831155511635.png)
+
+
+
+
+
+
+
+
+
+
+
