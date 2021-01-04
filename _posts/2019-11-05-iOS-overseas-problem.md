@@ -186,6 +186,8 @@ pod install
 
 然后重新编译时遇到了这个找不到lstdc++.6.0.9的错误，用这篇文章(https://www.jianshu.com/p/106d523058f4)的方法解决的。
 
+xcode 12升级后，拷贝的路径有变化，用这个https://github.com/devdawei/libstdc-
+
 在复制的过程中，发现自己的xcode10的/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/ 目录下是有这个文件的，不知道是不是因为刚才编译没有选择真机（蓝牙相关项目，以前一直是真机调试）。总之解决了这个问题。
 
 问题2: `ld: symbol(s) not found for architecture arm64`
