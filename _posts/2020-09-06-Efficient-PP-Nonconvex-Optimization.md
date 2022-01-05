@@ -30,7 +30,7 @@ Wang L, Jayaraman B, Evans D, et al. Efficient Privacy-Preserving Nonconvex Opti
 
 pdf test:
 
- [Conditional gradient method.pdf](/assets/pdf/Conditional gradient method.pdf) 
+ [Conditional gradient method.pdf](/assets/pdf/cgd.pdf) 
 
 
 
